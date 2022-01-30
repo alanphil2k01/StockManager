@@ -24,17 +24,17 @@ func init() {
 	} else {
 		log.Println("Successfully connected to mysql")
 	}
-	getProd, err := db.Prepare("SELECT * FROM Products WHERE number = ?")
+	getProd, err = db.Prepare("SELECT * FROM Products WHERE number = ?")
 	if err != nil {
-		log.Fatal("Error creating statemennt:", err)
+		log.Println("Error creating statemennt:", err)
 	}
 	getProdById, err = db.Prepare("INSERT INTO Products VALUES( ?, ? )")
 	if err != nil {
-		log.Fatal("Error creating statemennt:", err)
+		log.Println("Error creating statemennt:", err)
 	}
 	insProduct, err = db.Prepare("INSERT INTO Products VALUES( ?, ? )")
 	if err != nil {
-		log.Fatal("Error creating statemennt:", err)
+		log.Println("Error creating statemennt:", err)
 	}
 
 }

@@ -37,9 +37,9 @@ services:
     # restart: always
     ports:
       - 80:80
-    # depends_on:
-    #   db:
-    #     condition: service_healthy
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   sql-data:
