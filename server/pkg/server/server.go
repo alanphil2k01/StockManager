@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/alanphil2k01/SSMC/pkg/config"
-	_ "github.com/alanphil2k01/SSMC/pkg/db"
+	"github.com/alanphil2k01/SSMC/pkg/db"
 )
 
 var (
@@ -40,8 +40,7 @@ func RunServer() (<-chan error, error) {
 		ctxTimeout, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 
 		defer func() {
-			// logger.Sync()
-			// db.Close()
+			db.Close()
 			stop()
 			cancel()
 			close(errC)
