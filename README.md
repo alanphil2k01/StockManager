@@ -5,3 +5,5 @@
 ```sh
 ./deploy
 ```
+### ER Diagram
+![er-diagram](./images/ER-Diagram.png)
