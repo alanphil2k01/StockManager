@@ -7,5 +7,6 @@
 ./deploy
 ```
 
+## Info
 ### ER Diagram
 ![er-diagram](./images/ER-Diagram.png)
