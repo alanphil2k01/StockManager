@@ -63,5 +63,12 @@ func RunServer() (<-chan error, error) {
 		}
 	}()
 
+	go func() {
+		for {
+			time.Sleep(24 * time.Hour)
+			db.RemoveExpired()
+		}
+	}()
+
 	return errC, nil
 }

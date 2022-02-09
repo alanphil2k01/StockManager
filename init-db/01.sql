@@ -12,7 +12,7 @@ CREATE TABLE products (
 
 CREATE TABLE stocks (
     stock_id        VARCHAR(30)     NOT NULL,
-    expiry_date      DATE,
+    expiry_date     DATE,
     curr_qty        INT             DEFAULT(0),
     prod_id         VARCHAR(30)     NOT NULL,
     PRIMARY KEY    (stock_id)
@@ -23,7 +23,7 @@ CREATE TABLE stock_logs (
     stock_id        VARCHAR(30)     NOT NULL,
     prod_id         VARCHAR(30)     NOT NULL,
     qty             INT             NOT NULL,
-    date_arrived    DATE            NOT NULL,
+    date_processed  DATE            NOT NULL,
     expiry_date     DATE,
     action          VARCHAR(30)     NOT NULL,
     status          VARCHAR(30)     NOT NULL,

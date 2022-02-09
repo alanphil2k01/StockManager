@@ -2,10 +2,11 @@ package db
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
-	"github.com/alanphil2k01/SSMC/pkg/config"
 	"github.com/alanphil2k01/SSMC/pkg/types"
+	"github.com/alanphil2k01/SSMC/pkg/utils"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -16,9 +17,18 @@ var (
 	insProduct  *sql.Stmt
 )
 
+func GetDB() (*sql.DB, error) {
+	database := utils.GetEnv("MYSQL_DATABASE", "db")
+	user := utils.GetEnv("MYSQL_USER", "user")
+	password := utils.GetEnv("MYSQL_PASSWORD", "password")
+	connAddr := fmt.Sprintf("%s:%s@tcp(db:3306)/%s", user, password, database)
+	// db, err := gorm.Open(mysql.Open(connAddr), &gorm.Config{})
+	db, err := sql.Open("mysql", connAddr)
+	return db, err
+}
 func init() {
 	var err error
-	db, err = config.GetDB()
+	db, err = GetDB()
 	if err != nil {
 		log.Println("Cannot connect to mysql: ", err)
 	} else {
@@ -42,6 +52,21 @@ func init() {
 func Close() {
 	db.Close()
 }
+
+func RemoveExpired() error {
+	remExpiredProc, err := db.Prepare("call remove_expired()")
+	if err != nil {
+		return err
+	}
+	defer remExpiredProc.Close()
+	_, err = remExpiredProc.Exec()
+	if err != nil {
+		return err
+	}
+	log.Println("Remove expired stocks")
+	return nil
+}
+
 func GetProductById() {
 }
 
