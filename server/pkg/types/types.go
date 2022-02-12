@@ -5,46 +5,67 @@ const (
 	ADIMINISTATOR
 )
 
-type Product struct {
-	prodCode string
-	prodName string
-	category string
-	rate     uint
-	maxQty   uint
+type ReponeMsg struct {
+	Msg  string      `json:"message"`
+	Data interface{} `json:"data"`
 }
 
-type Batch struct {
-	batchCode string
-	producode string
-	batchQty  uint
-	currQty   uint
+type Products struct {
+	Prod_id       string `json:"prod_id"`
+	Prod_name     string `json:"prod_name"`
+	Rate          uint   `json:"rate"`
+	Total_qty     uint   `json:"total_qty"`
+	Max_capacity  uint   `json:"max_capacity"`
+	Prod_category uint   `json:"prod_category"`
+	Supplier_id   uint   `json:"supplier_id"`
 }
 
 type Stocks struct {
-	id        uint
-	prodCode  string
-	batchCode string
-	qty       uint
+	Stock_id    string `json:"stock_id"`
+	Expiry_date string `json:"expiry_date"`
+	Curr_qty    uint   `json:"curr_qty"`
+	Prod_id     string `json:"prod_id"`
 }
 
-type ProductCategory struct {
-	category   string
-	storageLoc string
+type StockLogs struct {
+	Log_id         uint   `json:"log_id"`
+	Stock_id       string `json:"stock_id"`
+	Prod_id        string `json:"prod_id"`
+	Qty            uint   `json:"qty"`
+	Date_processed string `json:"date_processed"`
+	Expiry_date    string `json:"expiry_date"`
+	Action         string `json:"action"`
+	Status         string `json:"status"`
 }
 
-// ID         uint `gorm:"primaryKey" json:"id"`
-// Name       string
-// SupplierId uint
-// CreatedAt  time.Time
-// UpdatedAt  time.Time
-// DeletedAt  gorm.DeletedAt `gorm:"index"`
+type Suppliers struct {
+	Supplier_id uint   `json:"supplier_id"`
+	S_name      string `json:"s_name"`
+	S_email     string `json:"s_email"`
+	Manager     string `json:"manager"`
+	Address     string `json:"address"`
+	Phone_no    string `json:"phone_no"`
+}
 
-// type Supplier struct {
-// }
-//
-// type User struct {
-// 	Id       uint
-// 	username string
-// 	email    string
-// 	password string
-// }
+type ProductCategories struct {
+	Cat_id        uint   `json:"cat_id"`
+	Cat_name      string `json:"cat_name"`
+	Warehouse_loc string `json:"warehouse_loc"`
+}
+
+type Users struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Email    string `json:"email"`
+	Name     string `json:"name"`
+	Role     string `json:"role"`
+}
+
+type ProductsList struct {
+	Prod_id   string `json:"prod_id"`
+	Prod_name string `json:"prod_name"`
+	Rate      uint   `json:"rate"`
+	Total_qty uint   `json:"total_qty"`
+	S_name    string `json:"s_name"`
+	Cat_name  string `json:"cat_name"`
+}

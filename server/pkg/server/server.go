@@ -2,6 +2,8 @@ package server
 
 import (
 	"context"
+	"embed"
+	"io/fs"
 	"log"
 	"net/http"
 	"os"
@@ -11,16 +13,40 @@ import (
 
 	"github.com/alanphil2k01/SSMC/pkg/config"
 	"github.com/alanphil2k01/SSMC/pkg/db"
+	"github.com/alanphil2k01/SSMC/pkg/routes"
+	"github.com/gorilla/mux"
 )
 
 var (
+	//go:embed static
+	content embed.FS
 	address string
+	port    string
 	srv     *http.Server
 )
 
 func init() {
 	address = config.GetAddress()
-	srv = config.GetServer()
+	srv = createServer()
+}
+
+func createServer(mws ...mux.MiddlewareFunc) *http.Server {
+	router := mux.NewRouter()
+	fsys, _ := fs.Sub(content, "static")
+	for _, mw := range mws {
+		router.Use(mw)
+	}
+	routes.RegisterRoutes(router)
+	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.FS(fsys))))
+
+	return &http.Server{
+		Handler:           router,
+		Addr:              address,
+		ReadTimeout:       1 * time.Second,
+		ReadHeaderTimeout: 1 * time.Second,
+		WriteTimeout:      1 * time.Second,
+		IdleTimeout:       1 * time.Second,
+	}
 }
 
 func RunServer() (<-chan error, error) {

@@ -26,7 +26,7 @@ RUN go mod download
 
 COPY server .
 
-COPY --from=node-builder /static pkg/config/static
+COPY --from=node-builder /static pkg/server/static
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-extldflags "-static"' -o /go/bin/SSMC cmd/ssmcserver/main.go
 
