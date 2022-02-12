@@ -7,7 +7,7 @@ INSERT INTO suppliers(supplier_id, s_name, s_email, manager, address, phone_no) 
     (1, 'ABC', 'abc@abc.com', 'A.B. C', 'abc lane', '8882223331'),
     (2, 'DEF', 'def@def.fom', 'D.E. F', 'def ldne', '8892443332');
 
-INSERT INTO products(prod_id, prod_name, rate, max_capacity, prod_category, supplier_id, total_qty) VALUES
+INSERT INTO products(prod_id, prod_name, rate, max_capacity, cat_id, supplier_id, total_qty) VALUES
     ('1', 'Pen1', 300, 200, 1, 1, 0),
     ('2', 'Pen2', 200, 400, 1, 2, 0),
     ('3', 'Biscuit1', 500, 500, 2, 1, 80),

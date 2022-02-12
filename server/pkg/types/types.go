@@ -11,13 +11,13 @@ type ReponeMsg struct {
 }
 
 type Products struct {
-	Prod_id       string `json:"prod_id"`
-	Prod_name     string `json:"prod_name"`
-	Rate          uint   `json:"rate"`
-	Total_qty     uint   `json:"total_qty"`
-	Max_capacity  uint   `json:"max_capacity"`
-	Prod_category uint   `json:"prod_category"`
-	Supplier_id   uint   `json:"supplier_id"`
+	Prod_id      string `json:"prod_id"`
+	Prod_name    string `json:"prod_name"`
+	Rate         uint   `json:"rate"`
+	Total_qty    uint   `json:"total_qty"`
+	Max_capacity uint   `json:"max_capacity"`
+	Cat_id       uint   `json:"cat_id"`
+	Supplier_id  uint   `json:"supplier_id"`
 }
 
 type Stocks struct {
@@ -62,10 +62,13 @@ type Users struct {
 }
 
 type ProductsList struct {
-	Prod_id   string `json:"prod_id"`
-	Prod_name string `json:"prod_name"`
-	Rate      uint   `json:"rate"`
-	Total_qty uint   `json:"total_qty"`
-	S_name    string `json:"s_name"`
-	Cat_name  string `json:"cat_name"`
+	Prod_id      string `json:"prod_id"`
+	Prod_name    string `json:"prod_name"`
+	Rate         uint   `json:"rate"`
+	Total_qty    uint   `json:"total_qty"`
+	Max_capacity uint   `json:"max_capacity"`
+	Supplier_id  uint   `json:"supplier_id"`
+	S_name       string `json:"s_name"`
+	Cat_id       uint   `json:"cat_id"`
+	Cat_name     string `json:"cat_name"`
 }

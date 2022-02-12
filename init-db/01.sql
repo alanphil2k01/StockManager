@@ -5,7 +5,7 @@ CREATE TABLE products (
     rate            INT,
     total_qty       INT             DEFAULT(0),
     max_capacity    INT             DEFAULT(100),
-    prod_category   INT             NOT NULL,
+    cat_id          INT             NOT NULL,
     supplier_id     INT             NOT NULL,
     PRIMARY KEY     (prod_id)
 );
@@ -58,5 +58,5 @@ CREATE TABLE users (
 
 -- Add required foreign keys
 ALTER TABLE products ADD FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id);
-ALTER TABLE products ADD FOREIGN KEY (prod_category) REFERENCES product_categories(cat_id);
+ALTER TABLE products ADD FOREIGN KEY (cat_id) REFERENCES product_categories(cat_id);
 ALTER TABLE stocks ADD FOREIGN KEY (prod_id) REFERENCES products(prod_id);
