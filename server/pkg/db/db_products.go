@@ -1,8 +1,6 @@
 package db
 
 import (
-	"log"
-
 	"github.com/alanphil2k01/SSMC/pkg/types"
 )
 
@@ -50,7 +48,7 @@ func GetProductById(prod_id string) (types.ProductsList, error) {
 	return p, nil
 }
 
-func GetProductByName(prod_name string) ([]types.ProductsList, error) {
+func GetProductsByName(prod_name string) ([]types.ProductsList, error) {
 	var products []types.ProductsList
 	var p types.ProductsList
 	resultSet, err := db.Query("SELECT prod_id, prod_name, rate, total_qty, max_capacity, supplier_id, s_name, cat_id, cat_name FROM products_list WHERE prod_name LIKE ?", "%"+prod_name+"%")
@@ -133,7 +131,6 @@ func UpdateProduct(prod_id string, p types.ProductsList) error {
 	}
 	defer stmt.Close()
 	_, err = stmt.Exec(p.Prod_name, p.Rate, p.Max_capacity, p.Cat_id, p.Supplier_id, prod_id)
-	log.Println(p.Prod_name, p.Rate, p.Max_capacity, p.Cat_id, p.Supplier_id, prod_id)
 	if err != nil {
 		return err
 	}

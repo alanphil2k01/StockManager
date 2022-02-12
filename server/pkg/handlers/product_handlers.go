@@ -1,8 +1,6 @@
 package handlers
 
 import (
-	"encoding/json"
-	"log"
 	"net/http"
 
 	"github.com/alanphil2k01/SSMC/pkg/db"
@@ -11,14 +9,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func responsMessage(w http.ResponseWriter, r *http.Request, msg string, statusCode int, data interface{}) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(statusCode)
-	json.NewEncoder(w).Encode(types.ReponeMsg{Msg: msg, Data: data})
-	log.Println(msg, " ", r.RemoteAddr)
-}
-
-func GetProduct(w http.ResponseWriter, r *http.Request) {
+func GetProducts(w http.ResponseWriter, r *http.Request) {
 	products, err := db.GetProducts()
 	if err != nil {
 		responsMessage(w, r, "Error - cannot get products", http.StatusInternalServerError, err)
@@ -42,10 +33,10 @@ func GetProductById(w http.ResponseWriter, r *http.Request) {
 	responsMessage(w, r, "Got product by id", http.StatusOK, product)
 }
 
-func GetProductByName(w http.ResponseWriter, r *http.Request) {
+func GetProductsByName(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	prod_name := vars["prod_name"]
-	products, err := db.GetProductByName(prod_name)
+	products, err := db.GetProductsByName(prod_name)
 	if err != nil {
 		responsMessage(w, r, "Error -  cannot get product by name", http.StatusInternalServerError, err)
 		return
@@ -54,7 +45,7 @@ func GetProductByName(w http.ResponseWriter, r *http.Request) {
 		responsMessage(w, r, "Empty Result Set", http.StatusOK, nil)
 		return
 	}
-	responsMessage(w, r, "Got product by id", http.StatusOK, products)
+	responsMessage(w, r, "Got product by name", http.StatusOK, products)
 }
 
 func PutProduct(w http.ResponseWriter, r *http.Request) {
