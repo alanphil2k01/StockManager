@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/master.css">
+    <script type="text/javascript">
+      function openOperationWindow(index){
+        var openelement=document.getElementsByClassName("tableoperationwindow");
+        openelement[0].style.display="inline-block";
+        var x=document.getElementsByClassName("tableoperation");
+        x[index].style.display="inline-block";
+      }
+      function closeOperationWindow(){
+        var closeelement=document.getElementsByClassName("tableoperationwindow");
+        closeelement[0].style.display="none";
+        closeelement[0].style.animation="fadeEffect .8s";
+        var x=document.getElementsByClassName("tableoperation");
+        for(i=0;i<x.length;i++){
+          x[i].style.display="none";
+        }
+      }
+      function increment() {
+      document.getElementById('quantityInput').stepUp();
+   }
+   function decrement() {
+      document.getElementById('quantityInput').stepDown();
+   }
+      </script>
+    <title>Stock Manager</title>
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <div class="title"><h1>Stock Manager.</h1></div>
+        <div class="tabs">
+          <a href="#">Tabone</a>
+          <a href="#">Tabtwo</a>
+          <a href="#">Tabthree</a>
+          <a href="#">Log out</a>
+        </div>
+      </div>
+    </header>
+    <main>
+    <div class="producttablesection">
+      <div class="optioncontainer">
+        <div><a href="#" onclick="openOperationWindow(0)">Add New Product</a></div>
+        <div class="">
+          <form action="/action_page.php">
+            <label for="view filter">View:</label>
+            <select class="viewlist" name="view" id="">
+              <option value="View All">View all</option>
+              <option value="Out of Stock">out of stock</option>
+              <option value="Running out">Running Out</option>
+            </select>
+          </form>
+        </div>
+        <div class="searchbar">
+          <input type="text" placeholder="Search.."><img src="icons/search.png" size="1px"alt="">
+        </div>
+      </div>
+      <div class="producttablecontainer">
+        <table>
+          <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Quantity</th>
+            <th>Supplier name</th>
+            <th>Expiry Date</th>
+            <th>Net Value</th>
+      </tr>
+      <tr><td>1</td><td>Soap</td><td>Cleaning</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+      <tr><td>1</td><td>Soap</td><td>Cleaning</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+      <tr><td>1</td><td>Soap</td><td>Cleaning</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+      <tr><td>1</td><td>Soap</td><td>Cleaning</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+    </table>
+  </div><!product listtable ends here>
+    </div>
+   <div class="addremovesection">
+     <div class="addstock">
+       <div class="addrmheading"><h3>Add Stock</h3></div>
+       <div class="addrmstockdetail">
+         <form class="addrmdetailform" action="index.html" method="post">
+           <div class="addrminputs">
+              <label for="productid">Product ID</label>
+              <input name="productid" type="text" placeholder="" required></input>
+           </div>
+           <div class="addrminputs">
+             <label for="productname">Product Name</label>
+             <input name="productname" type="text" placeholder="" required></input>
+           </div>
+           <div class="addrminputs">
+             <label for="expirydate">Expiry Date</label>
+            <input name="expirydate" type="date" placeholder="" required></input>
+           </div>
+           <div class="addrminputs">
+             <label for="quantity">Quantity</label></label>
+            <input id=quantityInput type=number min=0 placeholder="">
+           </div>
+           <div class="addrmbutcont">
+             <button class="addbutton"type="button" name="button">Add</button>
+           </div>
+         </form>
+       </div>
+     </div><!add newstock new ends here>
+     <div class="removestock">
+       <div class="addrmheading"><h3>Remove Stock</h3></div>
+       <div class="addrmstockdetail">
+         <form class="addrmdetailform" action="index.html" method="post">
+           <div class="addrminputs">
+              <label for="productid">Product ID</label>
+              <input name="productid" type="text" placeholder="" required></input>
+           </div>
+           <div class="addrminputs">
+             <label for="quantity">Quantity</label></label>
+            <input id=quantityInput type=number min=0 placeholder="">
+           </div>
+           <div class="addrmbutcont">
+             <button class="removebutton"type="button" name="button">Remove</button>
+           </div>
+         </form>
+       </div>
+     </div>
+   </div>
+   <div class="tableoperationwindow">
+     <div class="closedetails">
+       <img src="icons/close3.png" class="closeicon" onclick="closeOperationWindow()" alt="Close">
+     </div>
+
+
+     <! Add new product starts here>
+     <div class="addproduct tableoperation">
+       <h3>Add New Product</h3>
+       <div class="newsproductdetail">
+         <form class="detailform" action="index.html" method="post">
+           <div class="forminputcontainer">
+              <label for="productid">Product ID</label>
+              <input name="productid" type="text" placeholder="" required></input>
+           </div>
+           <div class="forminputcontainer">
+              <label for="productname">Product Name</label>
+              <input name="productname" type="text" placeholder="" required></input>
+           </div>
+           <div class="forminputcontainer">
+              <label for="category">Product Category</label>
+              <select name="category" id="cars">
+                <option value="General">General</option>
+                <option value="Packed food">Packed food</option>
+                <option value="Detergent">Detergent</option>
+                <option value="Food products">Food products</option>
+                <option value="Chocolate">Chocolate</option>
+              </select>
+           </div>
+           <div class="forminputcontainer">
+              <label for="rate">Rate</label></label>
+              <input  type=number min=0 placeholder="">
+           </div>
+           <br>
+           <div class="forminputcontainer">
+              <label for="suppliername">Supplier Name</label>
+              <input name="suppliername" type="text" placeholder="" required></input>
+           </div>
+           <div class="buttoncontainer">
+             <button class="cancelbutton"type="button" name="button" onclick="closeOperationWindow()">Cancel</button>
+             <button class="addbutton"type="button" name="button">Add</button>
+           </div>
+         </form>
+       </div>
+     </div>
+     <! Add new product ends here>
+   </div><! operation window ends>
+
+
+
+    </main>
+  </body>
+</html>
