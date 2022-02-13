@@ -1,4 +1,5 @@
 <html lang="en" dir="ltr">
+<<<<<<< HEAD
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/stocklog.css">
@@ -53,4 +54,58 @@
       </div><!supplylog table ends here>
   </main>
 </body>
+=======
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/stocklog.css">
+        <title>Stock Manager Stock log</title>
+    </head>
+    <body>
+        <header>
+            <div class="header">
+                <div class="title"><h1>Stock Manager.</h1></div>
+                <div class="tabs">
+                    <a href="index.html">Home</a>
+                    <a href="supplier.html">Suppliers</a>
+                    <a href="stocklog.html">Stock Log</a>
+                    <a id="logout"href="#">Log out</a>
+                </div>
+            </div>
+            <script defer src="./stocklog.js"></script>
+        </header>
+        <main>
+            <h2>Stock Log</h2>
+            <div class="suppliertablecontainer">
+                <div class="view-container">
+                    <form action="/action_page.php">
+                        <label for="view filter">View:</label>
+                        <select class="viewlist" name="view" id="">
+                            <option value="10">Last 10</option>
+                            <option value="20">Last 20</option>
+                            <option value="50">Last 50 </option>
+                            <option value="100">Last 100 </option>
+                            <option value="-1">View All</option>
+                        </select>
+                    </form>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Log ID</th>
+                            <th>Stock ID</th>
+                            <th>Product ID</th>
+                            <th>Quantity</th>
+                            <th>Date</th>
+                            <th>Expiry Date</th>
+                            <th>Action</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stockLogsTableBody">
+                    </tbody>
+                </table>
+            </div><!supplylog table ends here>
+        </main>
+    </body>
+>>>>>>> 576656687a4f5ddeaec262293747a5c05b664feb
 </html>

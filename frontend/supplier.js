@@ -29,9 +29,29 @@ async function get_suppliers() {
 async function init_suppliers() {
     supplier_data = await get_suppliers();
     supplier_data.sort((a, b) => {
-        return a-b;
+        return a.supplier_id-b.supplier_id;
     })
     update_supplier_table(supplier_data)
+}
+
+async function add_supplier() {
+    sForm = document.getElementsByClassName("supplier-detail-form")[0]
+    const res = await fetch("http://localhost/supplier", {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify({
+            s_name: sForm[0].value,
+            s_email: sForm[1].value,
+            manager: sForm[2].value,
+            address: sForm[3].value,
+            phone_no: sForm[4].value
+        })
+    })
+    const data = await res.json();
+    console.log(data)
+    init_suppliers()
 }
 
 init_suppliers()
