@@ -44,10 +44,10 @@ func AddStock(w http.ResponseWriter, r *http.Request) {
 	}
 	err := db.AddStock(stock)
 	if err != nil {
-		responsMessage(w, r, "Error - inserting suppliers", http.StatusInternalServerError, err)
+		responsMessage(w, r, "Error - inserting stocks", http.StatusInternalServerError, err)
 		return
 	}
-	responsMessage(w, r, "Inserted supplier", http.StatusOK, nil)
+	responsMessage(w, r, "Inserted stocks", http.StatusOK, nil)
 }
 
 func RemoveStocks(w http.ResponseWriter, r *http.Request) {

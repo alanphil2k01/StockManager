@@ -25,7 +25,7 @@ BEGIN
     DECLARE curr_date DATE DEFAULT CURDATE();
     DECLARE status, action VARCHAR(30);
     DECLARE prod_count, stock_count, curr_qty, max_qty INT;
-    DECLARE pid INT;
+    DECLARE pid VARCHAR(30);
     SET action = "ADD";
     START TRANSACTION;
     IF expiry < curr_date THEN

@@ -1,229 +1,185 @@
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/master.css">
-    <script type="text/javascript">
-      function openOperationWindow(index){
-        var openelement=document.getElementsByClassName("tableoperationwindow");
-        openelement[0].style.display="inline-block";
-        var x=document.getElementsByClassName("tableoperation");
-        x[index].style.display="inline-block";
-      }
-      function closeOperationWindow(){
-        var closeelement=document.getElementsByClassName("tableoperationwindow");
-        closeelement[0].style.display="none";
-        closeelement[0].style.animation="fadeEffect .8s";
-        var x=document.getElementsByClassName("tableoperation");
-        for(i=0;i<x.length;i++){
-          x[i].style.display="none";
-        }
-      }
-      function displayNewProductDetail(){
-       productId=document.getElementById("new-product-id").value;
-       productName=document.getElementById("new-product-name").value;
-       productCategory=document.getElementById("new-product-category").value;
-       productRate=document.getElementById("new-product-rate").value;
-       productSupplier=document.getElementById("new-product-supplier").value;
-       console.log(productId);
-       console.log(productName);
-       console.log(productCategory);
-       console.log(productRate);
-       console.log(productSupplier);
-      }
-      function displayNewCategoryDet(){
-       var categoryId=document.getElementById("new-category-id").value;
-       var categoryName=document.getElementById("new-category-name").value;
-       var categoryLocation=document.getElementById("new-category-location").value;
-       console.log(categoryId);
-       console.log(categoryName);
-       console.log(categoryLocation);
-      }
-      function displayNewStock(){
-        newStockProductId=document.getElementById("newstock-prodid").value;
-        newStockExpDate=document.getElementById("newstock-expdate").value;
-        newStockQty=document.getElementById("newstock-quantity").value;
-        console.log(newStockProductId);
-        console.log(newStockExpDate);
-        console.log(newStockQty);
-      }
-      function removeStockDetail(){
-        removeStockProdId=document.getElementById("rmstock-prodid").value;
-        removeStockQty=document.getElementById("rmstock-quantity").value;
-        console.log(removeStockProdId);
-        console.log(removeStockQty);
-      }
-      </script>
-    <script defer src="index.js"></script>
-    <title>Stock Manager</title>
-  </head>
-  <body>
-    <header>
-      <div class="header">
-        <div class="title"><h1>Stock Manager.</h1></div>
-        <div class="tabs">
-          <a href="index.html">Home</a>
-          <a href="supplier.html">Suppliers</a>
-          <a href="stocklog.html">Stock Log</a>
-          <a id="logout"href="#">Log out</a>
-        </div>
-      </div>
-    </header>
-    <main>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/master.css">
+        <script defer src="./js/index.js"></script>
+        <title>Stock Manager</title>
+    </head>
+    <body>
+        <header>
+            <div class="header">
+                <div class="title"><h1>Stock Manager.</h1></div>
+                <div class="tabs">
+                    <a href="index.html">Home</a>
+                    <a href="supplier.html">Suppliers</a>
+                    <a href="stocklog.html">Stock Log</a>
+                    <a id="logout"href="#">Log out</a>
+                </div>
+            </div>
+        </header>
+        <main>
 
-    <div class="producttablesection">
-      <div class="optioncontainer">
-        <div><a href="#" onclick="openOperationWindow(0)">Add New Product</a></div>
-        <div><a href="#" onclick="openOperationWindow(1)">Add New Category</a></div>
-        <div class="">
-          <form action="/action_page.php">
-            <label for="view filter">View:</label>
-            <select class="viewlist" name="view" id="">
-              <option value="View All">View all</option>
-              <option value="Out of Stock">out of stock</option>
-              <option value="Running out">Running Out</option>
-            </select>
-          </form>
-        </div>
-        <div class="searchbar">
-          <input type="text" placeholder="Search.."><img src="icons/search.png" size="1px"alt="">
-        </div>
-      </div>
-      <div class="producttablecontainer">
-        <table>
-            <thead>
-                <tr>
-                    <th>Product ID</th>
-                    <th>Product Name</th>
-                    <th>Product Category</th>
-                    <th>Quantity</th>
-                    <th>Rate</th>
-                    <th>Max Capacity</th>
-                    <th>Supplier name</th>
-                </tr>
-            </thead>
-            <tbody id="productsTableBody">
-            </tbody>
-    </table>
-  </div><!product listtable ends here>
-    </div>
-   <div class="addremovesection">
-     <div class="addstock">
-       <div class="addrmheading"><h3>Add Stock</h3></div>
-       <div class="addrmstockdetail">
-         <form class="addrmdetailform" action="index.html" method="post">
-           <div class="addrminputs">
-              <label for="productid">Product ID</label>
-              <input id="newstock-prodid" name="productid" type="text" placeholder="" required></input>
-           </div>
-           <div class="addrminputs">
-             <label for="quantity">Quantity</label></label>
-            <input id="newstock-quantity" type=number min=0 placeholder="">
-           </div>
-           <div class="addrminputs">
-             <label for="expirydate">Expiry Date</label>
-             <input id="newstock-expdate" name="expirydate" type="date" placeholder="" required></input>
-           </div>
-           <div class="addrmbutcont">
-             <button class="addbutton"type="button" name="button" onclick="displayNewStock()">Add</button>
-           </div>
-         </form>
-       </div>
-     </div><!add newstock new ends here>
+            <div class="producttablesection">
+                <div class="optioncontainer">
+                    <div><a href="#" onclick="openOperationWindow(0)">Add New Product</a></div>
+                    <div><a href="#" onclick="openOperationWindow(1)">Add New Category</a></div>
+                    <div class="">
+                        <form action="/action_page.php">
+                            <label for="view filter">View:</label>
+                            <select class="viewlist" name="view" id="">
+                                <option value="View All">View all</option>
+                                <option value="Out of Stock">out of stock</option>
+                                <option value="Running out">Running Out</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="searchbar">
+                        <input type="text" placeholder="Search..">
+                    </div>
+                </div>
+                <div class="producttablecontainer">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Product Name</th>
+                                <th>Product Category</th>
+                                <th>Rate</th>
+                                <th>Quantity</th>
+                                <th>Max Capacity</th>
+                                <th>Supplier name</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                        </tbody>
+                    </table>
+                </div><!product listtable ends here>
+            </div>
+            <div class="addremovesection">
+                <div class="addstock">
+                    <div class="addrmheading"><h3>Add Stock</h3></div>
+                    <div class="addrmstockdetail">
+                        <form onsubmit="add_stock()" class="addrmdetailform" action="index.html" method="post">
+                            <div class="addrminputs">
+                                <label for="stockid">Stock ID</label>
+                                <input id="newstock-stockid" name="stockid" type="text" placeholder="" required></input>
+                            </div>
+                            <div class="addrminputs">
+                                <label for="productid">Product ID</label>
+                                <input id="newstock-prodid" name="productid" type="text" placeholder="" required></input>
+                            </div>
+                            <div class="addrminputs">
+                                <label for="quantity">Quantity</label></label>
+                            <input id="newstock-quantity" type=number min=0 placeholder="">
+                            </div>
+                            <div class="addrminputs">
+                                <label for="expirydate">Expiry Date</label>
+                                <input id="newstock-expdate" name="expirydate" type="date" placeholder="" required></input>
+                            </div>
+                            <div class="addrmbutcont">
+                                <button onclick="add_stock()" class="addbutton"type="button" name="button">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!add newstock new ends here>
 
-     <div class="removestock"><!Remove stock begins>
-       <div class="addrmheading"><h3>Remove Stock</h3></div>
-       <div class="addrmstockdetail">
-         <form class="addrmdetailform" action="index.html" method="post">
-           <div class="addrminputs">
-              <label for="productid">Product ID</label>
-              <input id="rmstock-prodid" name="productid" type="text" placeholder="" required></input>
-           </div>
-           <div class="addrminputs">
-             <label for="quantity">Quantity</label></label>
-            <input id="rmstock-quantity" type=number min=0 placeholder="">
-           </div>
-           <div class="addrmbutcont">
-             <button class="removebutton"type="button" name="button" onclick="removeStockDetail()">Remove</button>
-           </div>
-         </form>
-       </div>
-     </div><!Remove stock ends>
-   </div>
-   <div class="tableoperationwindow">
-     <div class="closedetails">
-       <img src="icons/close3.png" class="closeicon" onclick="closeOperationWindow()" alt="Close">
-     </div>
-     <! Add new product starts here>
-     <div class="addproduct tableoperation">
-       <h3>Add New Product</h3>
-       <div class="newsproductdetail">
-         <form class="detailform" action="index.html" method="post">
-           <div class="forminputcontainer">
-              <label for="productid">Product ID</label>
-              <input id="new-product-id" name="productid" type="text" placeholder="" required></input>
-           </div>
-           <div class="forminputcontainer">
-              <label for="productname">Product Name</label>
-              <input id="new-product-name" name="productname" type="text" placeholder="" required></input>
-           </div>
-           <div class="forminputcontainer">
-              <label for="category">Product Category</label>
-              <select id="new-product-category" name="category" ini>
-                <option value="General">General</option>
-                <option value="Packed food">Packed food</option>
-                <option value="Detergent">Detergent</option>
-                <option value="Food products">Food products</option>
-                <option value="Chocolate">Chocolate</option>
-              </select>
-           </div>
-           <div class="forminputcontainer">
-              <label for="rate">Rate</label></label>
-              <input id="new-product-rate"  type=number min=0 placeholder="">
-           </div>
-           <br>
-           <div class="forminputcontainer">
-              <label for="suppliername">Supplier Name</label>
-              <input id="new-product-supplier" name="suppliername" type="text" placeholder="" required></input>
-           </div>
-           <div class="buttoncontainer">
-             <button class="cancelbutton"type="button" name="button" onclick="closeOperationWindow()">Cancel</button>
-             <button class="addbutton"type="button" name="button" onclick="displayNewProductDetail()">Add</button>
-           </div>
-         </form>
-       </div>
-     </div>
-     <! Add new product ends here>
-     <! Add new category starts here>
-     <div class="addproduct tableoperation">
-       <h3>Add New Category</h3>
-       <div class="newsproductdetail">
-         <form class="detailform" action="index.html" method="post">
-           <div class="forminputcontainer">
-              <label for="categoryid">Category ID</label>
-              <input id="new-category-id" name="categoryid" type="text" placeholder="" required></input>
-           </div>
-           <div class="forminputcontainer">
-              <label for="categoryname">Category Name</label>
-              <input id="new-category-name" name="categoryname" type="text" placeholder="" required></input>
-           </div>
-           <div class="forminputcontainer">
-              <label for="categorylocation">Location</label>
-              <input id="new-category-location" name="categorylocation" type="text" placeholder="" required></input>
-           </div>
-           <div class="buttoncontainer">
-             <button class="cancelbutton"type="button" name="button" onclick="closeOperationWindow()">Cancel</button>
-             <button class="addbutton"type="button" name="button" onclick="displayNewCategoryDet()">Add</button>
-           </div>
-         </form>
-       </div>
-     </div>
-     <! Add new category ends here>
-   </div><! operation window ends>
-
-
-
-    </main>
-  </body>
+                <div class="removestock"><!Remove stock begins>
+                    <div class="addrmheading"><h3>Remove Stock</h3></div>
+                    <div class="addrmstockdetail">
+                        <form class="addrmdetailform" action="index.html" method="post">
+                            <div class="addrminputs">
+                                <label for="productid">Product ID</label>
+                                <input id="rmstock-prodid" name="productid" type="text" placeholder="" required></input>
+                            </div>
+                            <div class="addrminputs">
+                                <label for="quantity">Quantity</label></label>
+                            <input id="rmstock-quantity" type=number min=0 placeholder="">
+                            </div>
+                            <div class="addrmbutcont">
+                                <button class="removebutton"type="button" name="button" onclick="remove_stock()">Remove</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!Remove stock ends>
+            </div>
+            <div class="tableoperationwindow">
+                <div class="closedetails">
+                    <img src="icons/close3.png" class="closeicon" onclick="closeOperationWindow()" alt="Close">
+                </div>
+                <! Add new product starts here>
+                <div class="addproduct tableoperation">
+                    <h3>Add New Product</h3>
+                    <div class="newsproductdetail">
+                        <form class="detailform" action="index.html" method="post">
+                            <div class="forminputcontainer">
+                                <label for="productid">Product ID</label>
+                                <input id="new-product-id" name="productid" type="text" placeholder="" required></input>
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="productname">Product Name</label>
+                                <input id="new-product-name" name="productname" type="text" placeholder="" required></input>
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="supplier">Supplier Name</label>
+                                <select id="new-product-supplier" name="category" ini>
+                                    <!-- <option value="General">General</option> -->
+                                    <!-- <option value="Packed food">Packed food</option> -->
+                                    <!-- <option value="Detergent">Detergent</option> -->
+                                    <!-- <option value="Food products">Food products</option> -->
+                                    <!-- <option value="Chocolate">Chocolate</option> -->
+                                </select>
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="category">Product Category</label>
+                                <select id="new-product-category" name="category" ini>
+                                    <!-- <option value="General">General</option> -->
+                                    <!-- <option value="Packed food">Packed food</option> -->
+                                    <!-- <option value="Detergent">Detergent</option> -->
+                                    <!-- <option value="Food products">Food products</option> -->
+                                    <!-- <option value="Chocolate">Chocolate</option> -->
+                                </select>
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="rate">Rate</label></label>
+                            <input id="new-product-rate"  type=number min=0 placeholder="">
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="rate">Max Capacity</label></label>
+                            <input id="new-product-max-capacity"  type=number min=0 placeholder="">
+                            </div>
+                            <br>
+                            <div class="buttoncontainer">
+                                <button class="cancelbutton"type="button" name="button" onclick="closeOperationWindow()">Cancel</button>
+                                <button class="addbutton"type="button" name="button" onclick="add_product()">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <! Add new product ends here>
+                <! Add new category starts here>
+                <div class="addproduct tableoperation">
+                    <h3>Add New Category</h3>
+                    <div class="newsproductdetail">
+                        <form class="detailform" action="index.html" method="post">
+                            <div class="forminputcontainer">
+                                <label for="categoryname">Category Name</label>
+                                <input id="new-category-name" name="categoryname" type="text" placeholder="" required></input>
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="categorylocation">Location</label>
+                                <input id="new-category-location" name="categorylocation" type="text" placeholder="" required></input>
+                            </div>
+                            <div class="buttoncontainer">
+                                <button class="cancelbutton"type="button" name="button" onclick="closeOperationWindow()">Cancel</button>
+                                <button class="addbutton"type="button" name="button" onclick="new_category()">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <! Add new category ends here>
+            </div><! operation window ends>
+        </main>
+    </body>
 </html>
