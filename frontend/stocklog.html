@@ -19,6 +19,16 @@
     <main>
       <h2>Stock Log</h2>
       <div class="suppliertablecontainer">
+        <div class="view-container">
+                <form action="/action_page.php">
+                  <label for="view filter">View:</label>
+                  <select class="viewlist" name="view" id="">
+                    <option value="last10">Last 10</option>
+                    <option value="last50">Last 50 </option>
+                    <option value="view all">View All</option>
+                  </select>
+                </form>
+              </div>
         <table>
           <tr>
             <th>Date</th>

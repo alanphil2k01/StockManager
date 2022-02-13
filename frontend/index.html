@@ -20,12 +20,40 @@
           x[i].style.display="none";
         }
       }
-      function increment() {
-      document.getElementById('quantityInput').stepUp();
-   }
-   function decrement() {
-      document.getElementById('quantityInput').stepDown();
-   }
+      function displayNewProductDetail(){
+       productId=document.getElementById("new-product-id").value;
+       productName=document.getElementById("new-product-name").value;
+       productCategory=document.getElementById("new-product-category").value;
+       productRate=document.getElementById("new-product-rate").value;
+       productSupplier=document.getElementById("new-product-supplier").value;
+       console.log(productId);
+       console.log(productName);
+       console.log(productCategory);
+       console.log(productRate);
+       console.log(productSupplier);
+      }
+      function displayNewCategoryDet(){
+       var categoryId=document.getElementById("new-category-id").value;
+       var categoryName=document.getElementById("new-category-name").value;
+       var categoryLocation=document.getElementById("new-category-location").value;
+       console.log(categoryId);
+       console.log(categoryName);
+       console.log(categoryLocation);
+      }
+      function displayNewStock(){
+        newStockProductId=document.getElementById("newstock-prodid").value;
+        newStockExpDate=document.getElementById("newstock-expdate").value;
+        newStockQty=document.getElementById("newstock-quantity").value;
+        console.log(newStockProductId);
+        console.log(newStockExpDate);
+        console.log(newStockQty);
+      }
+      function removeStockDetail(){
+        removeStockProdId=document.getElementById("rmstock-prodid").value;
+        removeStockQty=document.getElementById("rmstock-quantity").value;
+        console.log(removeStockProdId);
+        console.log(removeStockQty);
+      }
       </script>
     <script defer src="index.js"></script>
     <title>Stock Manager</title>
@@ -87,44 +115,41 @@
          <form class="addrmdetailform" action="index.html" method="post">
            <div class="addrminputs">
               <label for="productid">Product ID</label>
-              <input name="productid" type="text" placeholder="" required></input>
-           </div>
-           <div class="addrminputs">
-             <label for="productname">Product Name</label>
-             <input name="productname" type="text" placeholder="" required></input>
-           </div>
-           <div class="addrminputs">
-             <label for="expirydate">Expiry Date</label>
-            <input name="expirydate" type="date" placeholder="" required></input>
+              <input id="newstock-prodid" name="productid" type="text" placeholder="" required></input>
            </div>
            <div class="addrminputs">
              <label for="quantity">Quantity</label></label>
-            <input id=quantityInput type=number min=0 placeholder="">
+            <input id="newstock-quantity" type=number min=0 placeholder="">
+           </div>
+           <div class="addrminputs">
+             <label for="expirydate">Expiry Date</label>
+             <input id="newstock-expdate" name="expirydate" type="date" placeholder="" required></input>
            </div>
            <div class="addrmbutcont">
-             <button class="addbutton"type="button" name="button">Add</button>
+             <button class="addbutton"type="button" name="button" onclick="displayNewStock()">Add</button>
            </div>
          </form>
        </div>
      </div><!add newstock new ends here>
-     <div class="removestock">
+
+     <div class="removestock"><!Remove stock begins>
        <div class="addrmheading"><h3>Remove Stock</h3></div>
        <div class="addrmstockdetail">
          <form class="addrmdetailform" action="index.html" method="post">
            <div class="addrminputs">
               <label for="productid">Product ID</label>
-              <input name="productid" type="text" placeholder="" required></input>
+              <input id="rmstock-prodid" name="productid" type="text" placeholder="" required></input>
            </div>
            <div class="addrminputs">
              <label for="quantity">Quantity</label></label>
-            <input id=quantityInput type=number min=0 placeholder="">
+            <input id="rmstock-quantity" type=number min=0 placeholder="">
            </div>
            <div class="addrmbutcont">
-             <button class="removebutton"type="button" name="button">Remove</button>
+             <button class="removebutton"type="button" name="button" onclick="removeStockDetail()">Remove</button>
            </div>
          </form>
        </div>
-     </div>
+     </div><!Remove stock ends>
    </div>
    <div class="tableoperationwindow">
      <div class="closedetails">
@@ -137,15 +162,15 @@
          <form class="detailform" action="index.html" method="post">
            <div class="forminputcontainer">
               <label for="productid">Product ID</label>
-              <input name="productid" type="text" placeholder="" required></input>
+              <input id="new-product-id" name="productid" type="text" placeholder="" required></input>
            </div>
            <div class="forminputcontainer">
               <label for="productname">Product Name</label>
-              <input name="productname" type="text" placeholder="" required></input>
+              <input id="new-product-name" name="productname" type="text" placeholder="" required></input>
            </div>
            <div class="forminputcontainer">
               <label for="category">Product Category</label>
-              <select name="category" id="cars">
+              <select id="new-product-category" name="category" ini>
                 <option value="General">General</option>
                 <option value="Packed food">Packed food</option>
                 <option value="Detergent">Detergent</option>
@@ -155,16 +180,16 @@
            </div>
            <div class="forminputcontainer">
               <label for="rate">Rate</label></label>
-              <input  type=number min=0 placeholder="">
+              <input id="new-product-rate"  type=number min=0 placeholder="">
            </div>
            <br>
            <div class="forminputcontainer">
               <label for="suppliername">Supplier Name</label>
-              <input name="suppliername" type="text" placeholder="" required></input>
+              <input id="new-product-supplier" name="suppliername" type="text" placeholder="" required></input>
            </div>
            <div class="buttoncontainer">
              <button class="cancelbutton"type="button" name="button" onclick="closeOperationWindow()">Cancel</button>
-             <button class="addbutton"type="button" name="button">Add</button>
+             <button class="addbutton"type="button" name="button" onclick="displayNewProductDetail()">Add</button>
            </div>
          </form>
        </div>
@@ -177,19 +202,19 @@
          <form class="detailform" action="index.html" method="post">
            <div class="forminputcontainer">
               <label for="categoryid">Category ID</label>
-              <input name="cateogoryid" type="text" placeholder="" required></input>
+              <input id="new-category-id" name="categoryid" type="text" placeholder="" required></input>
            </div>
            <div class="forminputcontainer">
               <label for="categoryname">Category Name</label>
-              <input name="categoryname" type="text" placeholder="" required></input>
+              <input id="new-category-name" name="categoryname" type="text" placeholder="" required></input>
            </div>
            <div class="forminputcontainer">
               <label for="categorylocation">Location</label>
-              <input name="categorylocation" type="text" placeholder="" required></input>
+              <input id="new-category-location" name="categorylocation" type="text" placeholder="" required></input>
            </div>
            <div class="buttoncontainer">
              <button class="cancelbutton"type="button" name="button" onclick="closeOperationWindow()">Cancel</button>
-             <button class="addbutton"type="button" name="button">Add</button>
+             <button class="addbutton"type="button" name="button" onclick="displayNewCategoryDet()">Add</button>
            </div>
          </form>
        </div>
