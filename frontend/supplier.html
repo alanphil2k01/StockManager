@@ -41,14 +41,14 @@
      <h2>Add New Supplier</h2>
      <div class="add-supplier">
        <div class="add-supplier-detail">
-         <form class="supplier-detail-form" action="index.html" method="post">
-           <div class="form-input-container">
-              <label for="supplierid">Supplier ID</label>
-              <input name="supplierid" type="text" placeholder="" required></input>
-           </div>
+         <form class="supplier-detail-form" action="index.html" method="post" onsubmit="return add_supplier()">
            <div class="form-input-container">
               <label for="suppliername">Supplier Name</label>
               <input name="suppliername" type="text" placeholder="" required></input>
+           </div>
+           <div class="form-input-container">
+               <label for="supplieremail">Email</label>
+               <input name="supplieremail" type="email" placeholder="" required></input>
            </div>
            <div class="form-input-container">
               <label for="managername">Manager Name</label>
@@ -59,15 +59,11 @@
               <input name="supplieraddress" type="text" placeholder="" required></input>
            </div>
            <div class="form-input-container">
-              <label for="supplieremail">Email</label>
-              <input name="supplieremail" type="email" placeholder="" required></input>
-           </div>
-           <div class="form-input-container">
               <label for="contact">Contact</label></label>
               <input name="text" pattern="[0-9]{10}" placeholder=""></input>
            </div>
            <div class="button-container">
-             <button class="addbutton" type="button" name="button">Add</button>
+             <button onclick="add_supplier()" class="addbutton" type="button" name="button">Add</button>
            </div>
          </form>
        </div>
