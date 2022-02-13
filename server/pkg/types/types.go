@@ -72,3 +72,11 @@ type ProductsList struct {
 	Cat_id       uint   `json:"cat_id"`
 	Cat_name     string `json:"cat_name"`
 }
+
+type StocksList struct {
+	Stock_id    string `json:"stock_id"`
+	Expiry_date string `json:"expiry_date"`
+	Curr_qty    uint   `json:"curr_qty"`
+	Prod_id     string `json:"prod_id"`
+	Prod_name   string `json:"prod_name"`
+}
