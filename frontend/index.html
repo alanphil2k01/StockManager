@@ -35,9 +35,9 @@
       <div class="header">
         <div class="title"><h1>Stock Manager.</h1></div>
         <div class="tabs">
+          <a href="index.html">Home</a>
           <a href="supplier.html">Suppliers</a>
           <a href="stocklog.html">Stock Log</a>
-          <a href="#">Product Category</a>
           <a id="logout"href="#">Log out</a>
         </div>
       </div>
@@ -47,6 +47,7 @@
     <div class="producttablesection">
       <div class="optioncontainer">
         <div><a href="#" onclick="openOperationWindow(0)">Add New Product</a></div>
+        <div><a href="#" onclick="openOperationWindow(1)">Add New Category</a></div>
         <div class="">
           <form action="/action_page.php">
             <label for="view filter">View:</label>
@@ -129,8 +130,6 @@
      <div class="closedetails">
        <img src="icons/close3.png" class="closeicon" onclick="closeOperationWindow()" alt="Close">
      </div>
-
-
      <! Add new product starts here>
      <div class="addproduct tableoperation">
        <h3>Add New Product</h3>
@@ -171,6 +170,31 @@
        </div>
      </div>
      <! Add new product ends here>
+     <! Add new category starts here>
+     <div class="addproduct tableoperation">
+       <h3>Add New Category</h3>
+       <div class="newsproductdetail">
+         <form class="detailform" action="index.html" method="post">
+           <div class="forminputcontainer">
+              <label for="categoryid">Category ID</label>
+              <input name="cateogoryid" type="text" placeholder="" required></input>
+           </div>
+           <div class="forminputcontainer">
+              <label for="categoryname">Category Name</label>
+              <input name="categoryname" type="text" placeholder="" required></input>
+           </div>
+           <div class="forminputcontainer">
+              <label for="categorylocation">Location</label>
+              <input name="categorylocation" type="text" placeholder="" required></input>
+           </div>
+           <div class="buttoncontainer">
+             <button class="cancelbutton"type="button" name="button" onclick="closeOperationWindow()">Cancel</button>
+             <button class="addbutton"type="button" name="button">Add</button>
+           </div>
+         </form>
+       </div>
+     </div>
+     <! Add new category ends here>
    </div><! operation window ends>
 
 

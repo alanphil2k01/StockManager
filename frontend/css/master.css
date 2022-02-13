@@ -60,10 +60,10 @@ table td      {background-color:#e1e4e7 ;text-align: center;}
 .addremovesection{display: inline-block; width:26%;margin: 0 0 0 0%;float: right;
               }
 .removestock  {display: inline-block;width: 100%;background-color: #e1e4e7 ;margin: 4% 0 0% 0;
-               padding:0 0% 3% 0%;border-radius: 10px;  box-shadow: 0 1px 10px 0 grey;}
+               padding:0 0% 3% 0%;border-radius: 10px;  box-shadow: 0 2px 10px 0 grey;}
 .addstock  {display: inline-block;width: 100%;background-color: #e1e4e7 ;margin: 0 0 4% 0;
-               padding:0 0% 4% 0%;border-radius: 10px;  box-shadow: 0 2px 10px 0 grey;}
-.addremovesection .addrmstockdetail{margin: 2% 2.5% 0% 2.5%}
+               padding:0 0% 3% 0%;border-radius: 10px;  box-shadow: 0 2px 10px 0 grey;}
+.addremovesection .addrmstockdetail{margin: 2% 3% 0% 6%}
 .addremovesection .addrminputs   {width: 45%;display: inline-block;float: left;margin: 1% 5% 1% 0;}
 .addremovesection .addrmheading {text-align: center;background-color: #c7d1d9;display: inline-block;height: 50px;
               width: 100%;border-top-left-radius:10px;border-top-right-radius: 10px; margin: 0 0 5px 0;padding: 0;
