@@ -34,7 +34,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       SERVER_PORT: ${SERVER_PORT}
-    # restart: always
+    restart: always
     ports:
       - 80:80
     depends_on:

@@ -27,6 +27,7 @@
       document.getElementById('quantityInput').stepDown();
    }
       </script>
+    <script defer src="index.js"></script>
     <title>Stock Manager</title>
   </head>
   <body>
@@ -62,27 +63,19 @@
       </div>
       <div class="producttablecontainer">
         <table>
-          <tr>
-            <th>Product ID</th>
-            <th>Product Name</th>
-            <th>Product Category</th>
-            <th>Quantity</th>
-            <th>Supplier name</th>
-            <th>Expiry Date</th>
-            <th>Net Value</th>
-      </tr>
-      <tr><td>1</td><td>Soap</td><td>Cleaning</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
-      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
-      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
-      <tr><td>1</td><td>Soap</td><td>Cleaning</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
-      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
-      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
-      <tr><td>1</td><td>Soap</td><td>Cleaning</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
-      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
-      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
-      <tr><td>1</td><td>Soap</td><td>Cleaning</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
-      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
-      <tr><td>2</td><td>Hide and seek</td><td>Snack</td><td>10</td><td>brr supply</td><td>18/11/2020</td><td>98</td></tr>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Product Category</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                    <th>Max Capacity</th>
+                    <th>Supplier name</th>
+                </tr>
+            </thead>
+            <tbody id="productsTableBody">
+            </tbody>
     </table>
   </div><!product listtable ends here>
     </div>
