@@ -29,7 +29,7 @@ async function get_suppliers() {
 async function init_suppliers() {
     supplier_data = await get_suppliers();
     supplier_data.sort((a, b) => {
-        return a-b;
+        return a.supplier_id-b.supplier_id;
     })
     update_supplier_table(supplier_data)
 }
