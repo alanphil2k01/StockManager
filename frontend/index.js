@@ -1,4 +1,4 @@
-var product_data;
+let product_data;
 
 function update_products_table(data) {
     const tbody = document.getElementById("productsTableBody");
@@ -18,20 +18,18 @@ function update_products_table(data) {
     }
 }
 
-function get_products() {
-    fetch("http://localhost/product", {
+async function get_products() {
+    let res = await fetch("http://localhost/product", {
         "method": "GET",
         "headers": {}
     })
-        .then(res => {
-            res.json()
-                .then((data) =>
-                    update_products_table(data["data"])
-                )
-        })
-        .catch(err => {
-            console.error(err);
-        });
+    let data = await res.json()
+    return data["data"]
 }
 
-get_products();
+async function init() {
+    product_data = await get_products();
+    update_products_table(product_data)
+}
+
+init()
