@@ -27,9 +27,18 @@ async function get_products() {
     return data["data"]
 }
 
-async function init() {
+async function init_products() {
     product_data = await get_products();
+    product_data.sort((a, b) => {
+        if ( a.prod_id < b.prod_id ){
+            return 1;
+        }
+        if ( a.prod_id > b.prod_id ){
+            return -1;
+        }
+        return 0;
+    })
     update_products_table(product_data)
 }
 
-init()
+init_products()
