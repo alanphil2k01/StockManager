@@ -1,8 +1,6 @@
 package db
 
 import (
-	"log"
-
 	"github.com/alanphil2k01/SSMC/pkg/types"
 )
 
@@ -22,7 +20,6 @@ func GetSuppliers() ([]types.Suppliers, error) {
 			&s.Address,
 			&s.Phone_no)
 		if err != nil {
-			log.Println(err)
 			return nil, err
 		}
 		suppliers = append(suppliers, s)
@@ -40,7 +37,6 @@ func GetSupplierById(supplier_id int) (types.Suppliers, error) {
 		&s.Address,
 		&s.Phone_no)
 	if err != nil {
-		log.Println(err)
 		return types.Suppliers{}, err
 	}
 	return s, nil
