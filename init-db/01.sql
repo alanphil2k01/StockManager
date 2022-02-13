@@ -1,11 +1,11 @@
 -- Create tables
 CREATE TABLE products (
     prod_id         VARCHAR(10)     NOT NULL,
-    prod_name       VARCHAR(30)     NOT NULL,
+    prod_name       VARCHAR(30)     NOT NULL UNIQUE,
     rate            INT,
     total_qty       INT             DEFAULT(0),
     max_capacity    INT             DEFAULT(100),
-    prod_category   INT             NOT NULL,
+    cat_id          INT             NOT NULL,
     supplier_id     INT             NOT NULL,
     PRIMARY KEY     (prod_id)
 );
@@ -31,8 +31,8 @@ CREATE TABLE stock_logs (
 );
 
 CREATE TABLE suppliers (
-    supplier_id     INT             NOT NULL,
-    s_name          VARCHAR(30)     NOT NULL,
+    supplier_id     INT             NOT NULL AUTO_INCREMENT,
+    s_name          VARCHAR(30)     NOT NULL UNIQUE,
     s_email         VARCHAR(30)     NOT NULL,
     manager         VARCHAR(30)     NOT NULL,
     address         VARCHAR(100)    NOT NULL,
@@ -41,8 +41,8 @@ CREATE TABLE suppliers (
 );
 
 CREATE TABLE product_categories (
-    cat_id          INT             NOT NULL,
-    cat_name        VARCHAR(30)     NOT NULL,
+    cat_id          INT             NOT NULL AUTO_INCREMENT,
+    cat_name        VARCHAR(30)     NOT NULL UNIQUE,
     warehouse_loc   VARCHAR(30)     DEFAULT('UNASSIGNED'),
     PRIMARY KEY     (cat_id)
 );
@@ -58,5 +58,5 @@ CREATE TABLE users (
 
 -- Add required foreign keys
 ALTER TABLE products ADD FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id);
-ALTER TABLE products ADD FOREIGN KEY (prod_category) REFERENCES product_categories(cat_id);
+ALTER TABLE products ADD FOREIGN KEY (cat_id) REFERENCES product_categories(cat_id);
 ALTER TABLE stocks ADD FOREIGN KEY (prod_id) REFERENCES products(prod_id);

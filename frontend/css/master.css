@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body          {margin:0;padding:0 0 0 0;height: 100vh;font-family: "Calibri"}
 .header        {background-color: white;margin:;padding:0% 8% 0 8%;;margin-bottom: 0;
               color:white;box-shadow: 0px 0px 6px 0px grey;
@@ -127,3 +128,134 @@ table td      {background-color:#e1e4e7 ;text-align: center;}
 .addbutton,.removebutton {border: 1px #1b5672 solid;background: #1b5672;color: white}
 .addbutton:hover,.removebutton:hover {background: #0a3c54;color: white;box-shadow: 0px 1px 5px 0px #040404}
 .cancelbutton:hover {border-color: #0a3c54;box-shadow: 0px 1px 5px 0px #040404}
+=======
+body          {margin:0;padding:0 0 0 0;height: 100vh;font-family: "Calibri"}
+.header        {background-color: white;margin:;padding:0% 8% 0 8%;;margin-bottom: 0;
+              color:white;box-shadow: 0px 0px 6px 0px grey;
+              }
+.title        {background-color: white;padding: 1% 1% 1% 1%;display: inline-block;width:30}
+.title  h1    {font-style:normal;font-weight: 600;font-size: 170%;font-family: "Candara"; color: #1b5672;
+              display: inline-block;margin:0;
+              box-shadow:0px 0px 0px 0px #9f9b9b;
+              }
+header .tabs  {text-decoration: none;background-color:;width: 65%;text-align: right;float: right;
+              margin: 1.65% 0 0 0; border-bottom: solid #1b5672 0px;}
+
+header .tabs a {text-decoration: none;color: black;font-family: "Century Gothic";display: inline-block;
+              margin: 0 1% 0 1%;font-size: 96%;color: black;
+              }
+main          {margin: 3% 0 0 0;padding:0 8% 0 8%;background-color: ;}
+
+.producttablesection{ display: inline-block;width: 68%;float: left;
+              background-color:white ;padding:0;text-align: center;height: 76vh;
+              font-family: "Calibri";float: clear;
+              }
+.optioncontainer{margin: 0% 0% 2% 0%;width: 100%;height: 45px;background-color: #1b5672;
+              box-shadow: 0 1px 15px 0 grey;transition-property: color;transition: 0.4s;border-radius: 10px;
+              }
+.optioncontainer div{float: left;margin: 1% 0 1% 0;width:25%;text-align: center;font-size: 110%;font-weight: 600;color: #e1e4e7}
+.optioncontainer a{text-decoration:none;color: #e1e4e7}
+.optioncontainer div:hover{color: black}
+.optioncontainer a:hover{color: black}
+.optioncontainer .viewlist{
+              font-size: 80%;
+              text-align: left;
+              color:#e1e4e7;
+              border-top: none;
+              border-left: none;
+              border-right: none;
+              border-bottom: 1px #e1e4e7 solid;
+              background-color:#1b5672 ;
+              line-height: 200%;
+              transition-property: border-color;
+              transition-delay: 0s;
+              transition-duration: .3s;
+              float:;
+              outline: none;
+            }
+.optioncontainer .viewlist option{background-color: #e1e4e7;color: black}
+.optioncontainer .searchbar img{display: inline-block;width: 15px;padding: 0 3px 0 0;color: #e1e4e7 }
+.producttablecontainer{ display: inline-block;width: 100%;float: none;
+              background-color:white ;padding:0;text-align: center;max-height: 65vh;overflow: auto;
+              font-family: "Calibri";float: clear;
+              }
+table         {width: 100%;border-radius: 10%;}
+table tr      {text-align: center;line-height: 190%;transition-duration: .2s}
+table tr:hover td{background-color: #c2c3c0}
+table th      {background-color:#c7d1d9 ;text-align: center;line-height: 250%}
+table th:first-child{border-top-left-radius: 10px}
+table th:last-child{border-top-right-radius: 10px}
+table td      {background-color:#e1e4e7 ;text-align: center;}
+.addremovesection{display: inline-block; width:26%;margin: 0 0 0 0%;float: right;
+              }
+.removestock  {display: inline-block;width: 100%;background-color: #e1e4e7 ;margin: 4% 0 0% 0;
+               padding:0 0% 3% 0%;border-radius: 20px;  box-shadow: 0 1px 10px 0 grey;}
+.addstock  {display: inline-block;width: 100%;background-color: #e1e4e7 ;margin: 0 0 4% 0;
+               padding:0 0% 4% 0%;border-radius: 20px;  box-shadow: 0 2px 10px 0 grey;}
+.addremovesection .addrmstockdetail{margin: 2% 2.5% 0% 2.5%}
+.addremovesection .addrminputs   {width: 45%;display: inline-block;float: left;margin: 1% 5% 1% 0;}
+.addremovesection .addrmheading {text-align: center;background-color: #c7d1d9;display: inline-block;height: 50px;
+              width: 100%;border-top-left-radius:20px;border-top-right-radius: 20px; margin: 0 0 5px 0;padding: 0;
+              }
+.addremovesection .addrmheading{margin: 0;padding: 0}
+.addrminputs label{font-size: 80%;color: grey}
+.addrminputs input,.addrmdetailform select  {
+                      display: inline-block;width: 100%;
+                      color:black;
+                      border-top: none;
+                      border-left: none;
+                      border-right: none;
+                      border-bottom: 1px grey solid;
+                      background-color: inherit;
+                      line-height: 200%;
+                      transition-property: border-color;
+                      transition-delay: 0s;
+                      transition-duration: .3s;
+                      float:;
+                      outline: none;
+                    }
+.addrmbutcont{margin: 8% 0 0 0;padding: 0;float: clear;display:inline-block;width: 100%;text-align: center;}
+.addrmbutcont button{margin:0;font-size:90%;padding:1.5% 4% 1.5% 4%;border-radius: 5px;transition-duration: .3s;
+
+                }
+.tableoperationwindow {display: none;display:;width:100%;z-index: 9;margin:0 0 0 0;
+                         position:fixed;top:0;left: 0;height: 100vh;background-color: #081d35c4;}
+.closedetails img{display: inline-block;width:2%;background:#fd8512;border-radius: 50%;
+                  position: absolute;top:12%;right:19%;box-shadow: 0 0 3px 0px black}
+.closeoperationdetail {display: inline-block;float:right; width:2%;background:#fd8512;border-radius: 50%;
+                  box-shadow: 0 0 3px 0px black}
+.tableoperation {background-color: #ffffff;width:50%;margin: 0 25% 0 25%;padding: 2% 2% 2% 2%;
+              display: none;
+              border:white solid 5px;position: absolute;top:20%;box-shadow: 0px 0px 20px 0px black;
+              }
+@keyframes fadeEffect {
+  from{opacity:0}to{opacity: 1}
+  }
+.forminputcontainer   {width: 40%;display: inline-block;float: left;margin: 2% 5% 2% 0;}
+.forminputcontainer label{font-size: 80%;color: grey}
+.detailform input,.detailform select  {
+                      display: inline-block;width: 100%;
+                      color:black;
+                      border-top: none;
+                      border-left: none;
+                      border-right: none;
+                      border-bottom: 1px grey solid;
+                      background-color: inherit;
+                      line-height: 200%;
+                      transition-property: border-color;
+                      transition-delay: 0s;
+                      transition-duration: .3s;
+                      float:;
+                      outline: none;
+                    }
+.detailform input:focus  {border-color: #1b5672}
+.detailform input:hover{border-color: #1b5672;}
+.buttoncontainer{margin: 0px 0 0 0;padding: 0;float: clear;display:inline-block;width: 100%;}
+.buttoncontainer button{margin: 2% 1% 0% 1%;font-size:100%;padding:1% 2% 1% 2%;border-radius: 5%;transition-duration: .3s;
+
+                }
+.cancelbutton {border: 1px #1b5672 solid}
+.addbutton,.removebutton {border: 1px #1b5672 solid;background: #1b5672;color: white}
+.addbutton:hover,.removebutton:hover {background: #0a3c54;color: white;box-shadow: 0px 1px 5px 0px #040404}
+.cancelbutton:hover {border-color: #0a3c54;box-shadow: 0px 1px 5px 0px #040404}
+>>>>>>> 9f25a6b74e1c92251fbff584fd9134ba471768c9

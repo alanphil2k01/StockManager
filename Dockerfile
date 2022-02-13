@@ -1,18 +1,3 @@
-# Build the static website
-FROM node:alpine AS node-builder
-
-RUN apk update && apk add --no-cache git
-
-WORKDIR /app
-
-COPY frontend .
-
-ENV BUILD_PATH=/static
-
-RUN npm install
-
-RUN npm run build
-
 # Build the go binary
 FROM golang:alpine AS builder
 
@@ -26,7 +11,7 @@ RUN go mod download
 
 COPY server .
 
-COPY --from=node-builder /static pkg/server/static
+COPY frontend pkg/server/static
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-extldflags "-static"' -o /go/bin/SSMC cmd/ssmcserver/main.go
 
