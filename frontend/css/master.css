@@ -60,13 +60,13 @@ table td      {background-color:#e1e4e7 ;text-align: center;}
 .addremovesection{display: inline-block; width:26%;margin: 0 0 0 0%;float: right;
               }
 .removestock  {display: inline-block;width: 100%;background-color: #e1e4e7 ;margin: 4% 0 0% 0;
-               padding:0 0% 3% 0%;border-radius: 20px;  box-shadow: 0 1px 10px 0 grey;}
+               padding:0 0% 3% 0%;border-radius: 10px;  box-shadow: 0 1px 10px 0 grey;}
 .addstock  {display: inline-block;width: 100%;background-color: #e1e4e7 ;margin: 0 0 4% 0;
-               padding:0 0% 4% 0%;border-radius: 20px;  box-shadow: 0 2px 10px 0 grey;}
+               padding:0 0% 4% 0%;border-radius: 10px;  box-shadow: 0 2px 10px 0 grey;}
 .addremovesection .addrmstockdetail{margin: 2% 2.5% 0% 2.5%}
 .addremovesection .addrminputs   {width: 45%;display: inline-block;float: left;margin: 1% 5% 1% 0;}
 .addremovesection .addrmheading {text-align: center;background-color: #c7d1d9;display: inline-block;height: 50px;
-              width: 100%;border-top-left-radius:20px;border-top-right-radius: 20px; margin: 0 0 5px 0;padding: 0;
+              width: 100%;border-top-left-radius:10px;border-top-right-radius: 10px; margin: 0 0 5px 0;padding: 0;
               }
 .addremovesection .addrmheading{margin: 0;padding: 0}
 .addrminputs label{font-size: 80%;color: grey}
@@ -87,16 +87,16 @@ table td      {background-color:#e1e4e7 ;text-align: center;}
                     }
 .addrmbutcont{margin: 8% 0 0 0;padding: 0;float: clear;display:inline-block;width: 100%;text-align: center;}
 .addrmbutcont button{margin:0;font-size:90%;padding:1.5% 4% 1.5% 4%;border-radius: 5px;transition-duration: .3s;
+                     font-weight: 600;
 
                 }
 .tableoperationwindow {display: none;display:;width:100%;z-index: 9;margin:0 0 0 0;
                          position:fixed;top:0;left: 0;height: 100vh;background-color: #081d35c4;}
-.closedetails img{display: inline-block;width:2%;background:#fd8512;border-radius: 50%;
-                  position: absolute;top:12%;right:19%;box-shadow: 0 0 3px 0px black}
-.closeoperationdetail {display: inline-block;float:right; width:2%;background:#fd8512;border-radius: 50%;
-                  box-shadow: 0 0 3px 0px black}
+.closedetails img{display: inline-block;width:2%;background:#e1e4e7;border-radius: 50%;
+                  position: absolute;top:12%;right:20%;box-shadow: 0 0 5px 0px #e1e4e7}
+.closedetails img:hover{background:#1b5672}
 .tableoperation {background-color: #ffffff;width:50%;margin: 0 25% 0 25%;padding: 2% 2% 2% 2%;
-              display: none;
+              display: none;border-radius: 10px;
               border:white solid 5px;position: absolute;top:20%;box-shadow: 0px 0px 20px 0px black;
               }
 @keyframes fadeEffect {
@@ -123,9 +123,9 @@ table td      {background-color:#e1e4e7 ;text-align: center;}
 .detailform input:hover{border-color: #1b5672;}
 .buttoncontainer{margin: 0px 0 0 0;padding: 0;float: clear;display:inline-block;width: 100%;}
 .buttoncontainer button{margin: 2% 1% 0% 1%;font-size:100%;padding:1% 2% 1% 2%;border-radius: 5%;transition-duration: .3s;
-
+                  font-weight: 500;
                 }
 .cancelbutton {border: 1px #1b5672 solid}
-.addbutton,.removebutton {border: 1px #1b5672 solid;background: #1b5672;color: white}
+.addbutton,.removebutton {border: 1px #1b5672 solid;background: #1b5672;color: white;font-weight: 500;}
 .addbutton:hover,.removebutton:hover {background: #0a3c54;color: white;box-shadow: 0px 1px 5px 0px #040404}
 .cancelbutton:hover {border-color: #0a3c54;box-shadow: 0px 1px 5px 0px #040404}
