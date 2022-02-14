@@ -1,16 +1,15 @@
-body          {margin:0;padding:0 0 0 0;height: 100vh;font-family: "Calibri"}
+body          {margin:0;padding:0 0 0 0;height: 100vh;font-family: 'Poppins', sans-serif;}
 .header        {background-color: white;margin:;padding:0% 8% 0 8%;;margin-bottom: 0;
               color:white;box-shadow: 0px 0px 6px 0px grey;
               }
 .title        {background-color: white;padding: 1% 0% 1% 0%;display: inline-block;width:30%}
-.title  h1    {font-style:normal;font-weight: 600;font-size: 170%;font-family: "Candara"; color: #1b5672;
+.title  h1    {font-style:normal;font-size: 140%;font-family:'Poppins', sans-serif;color: #1b5672;
               display: inline-block;margin:0;
               box-shadow:0px 0px 0px 0px #9f9b9b;
               }
 header .tabs  {text-decoration: none;background-color:;width: 65%;text-align: right;float: right;
-                            margin: 1.65% 0 0 0; border-bottom: solid #1b5672 0px;}
-
-header .tabs a {text-decoration: none;color: grey;font-family: "Century Gothic";display: inline-block;
+              margin: 1.65% 0 0 0; border-bottom: solid #1b5672 0px;}
+header .tabs a {text-decoration: none;color: grey;display: inline-block;
                margin: 0 0% 0 2.5%;font-size: 96%;font-weight: 500;border-top: 1px solid white;
                transition-property: border color;transition-duration: .4s;
                }
@@ -20,17 +19,19 @@ main          {margin: 3% 0 0 0;padding:0 8% 0 8%;background-color: ;}
 
 .supplierdatasection{ display: inline-block;width: 68%;float: left;
               background-color:white ;padding:0;;height: 76vh;
-              font-family: "Calibri";float: clear;
+              float: clear;
               }
- h2           {text-align: left;color: #1b5672}
+ h3           {text-align: left;color: #1b5672;font-size:100% }
+ .view-container{float: left;}
 .suppliertablecontainer{ display: inline-block;width: 100%;float: none;text-align: center
               background-color:white ;padding:0;text-align: center;max-height: 65vh;overflow: auto;
-              font-family: "Calibri";float: clear;
+              float: clear;
               }
 table         {width: 100%;border-radius: 10%;}
-table tr      {text-align: center;line-height: 190%;transition-duration: .2s}
+table tr      {text-align: center;line-height: 190%;transition-duration: .2s;font-size: 85%;font-weight: 100;color: #363636;
+              }
 table tr:hover td{background-color: #c2c3c0}
-table th      {background-color:#c7d1d9 ;text-align: center;line-height: 250%}
+table th      {background-color:#c7d1d9 ;text-align: center;line-height: 250%;font-size: 95%;font-weight:200}
 table th:first-child{border-top-left-radius: 10px}
 table th:last-child{border-top-right-radius: 10px}
 table td      {background-color:#e1e4e7 ;text-align: center;}
