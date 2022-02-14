@@ -94,6 +94,20 @@ async function init_products() {
     update_products_table(product_data)
 }
 
+const searchInput = document.getElementById("prod-search");
+searchInput.addEventListener("input", (e)=>{
+    filterByName(e.target.value)
+})
+
+function filterByName(name) {
+    if(!name) {
+        update_products_table(product_data)
+        return
+    }
+    newProduct = product_data.filter((p, _) => p.prod_name.toLowerCase().includes(name.toLowerCase()))
+    update_products_table(newProduct)
+}
+
 async function add_product(){
     productId=document.getElementById("new-product-id").value;
     productName=document.getElementById("new-product-name").value;
