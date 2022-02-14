@@ -1,11 +1,11 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="css/stocklog.css">
+        <link rel="stylesheet" href="css/stocklist.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Philosopher&family=Poppins:wght@500&display=swap" rel="stylesheet">
-        <title>Stock Manager Stock log</title>
+        <title>Stock Manager Stock List</title>
     </head>
     <body>
         <header>
@@ -19,37 +19,25 @@
                     <a id="logout"href="#">Log out</a>
                 </div>
             </div>
-            <script defer src="./js/stocklog.js"></script>
+            <script defer src="./js/stocklist.js"></script>
         </header>
         <main>
-            <h3>Stock Log</h3>
-            <div class="suppliertablecontainer">
-                <div class="view-container">
-                    <form action="/action_page.php">
-                        <label for="view filter">View:</label>
-                        <select class="viewlist" name="view" id="">
-                            <option value="10">Last 10</option>
-                            <option value="20">Last 20</option>
-                            <option value="50">Last 50 </option>
-                            <option value="100">Last 100 </option>
-                            <option value="-1">View All</option>
-                        </select>
-                    </form>
-                </div>
+            <h3>Stock List</h3>
+            <div class="stocklist-table-container">
+              <div class="searchbar">
+                  <input type="text" placeholder="Search..">
+              </div>
                 <table>
                     <thead>
                         <tr>
-                            <th>Log ID</th>
                             <th>Stock ID</th>
                             <th>Product ID</th>
+                            <th>Product Name</th>
                             <th>Quantity</th>
-                            <th>Date</th>
                             <th>Expiry Date</th>
-                            <th>Action</th>
-                            <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody id="stockLogsTableBody">
+                    <tbody id="stocklistTableBody">
                     </tbody>
                 </table>
             </div><!supplylog table ends here>

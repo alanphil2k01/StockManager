@@ -17,16 +17,26 @@ header .tabs a:hover{color:#1b5672;border-top: 1px solid #1b5672; }
 header .tabs #logout:hover{color:#1b5672;border-top: 1px solid red; }
 main          {margin: 3% 0 0 0;padding:0 8% 0 8%;background-color: ;}
 
-.supplierdatasection{ display: inline-block;width: 68%;float: left;
-              background-color:white ;padding:0;;height: 76vh;
-              float: clear;
-              }
  h3           {text-align: left;color: #1b5672;font-size:100% }
- .view-container{float: right;margin: 0}
-.suppliertablecontainer{ display: inline-block;width: 100%;float: none;text-align: center
+.stocklist-table-container{ display: inline-block;width: 100%;float: none;text-align: center
               background-color:white ;padding:0;text-align: center;max-height: 65vh;overflow: auto;
-              float: clear;
-              }
+              float: clear;}
+.stocklist-table-container .searchbar{display:block;}
+.stocklist-table-container .searchbar input{
+            display: inline-block;width: 30%;
+            margin:0 1% 0.5% 0;
+            color:#1b5672;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px ##1b5672 solid;
+            background-color: inherit;
+            line-height: 200%;
+            transition-property: border-color;
+            transition-delay: 0s;
+            transition-duration: .3s;
+            float: right;
+            outline: none;}
 table         {width: 100%;border-radius: 10%;}
 table tr      {text-align: center;line-height: 190%;transition-duration: .2s;font-size: 85%;font-weight: 100;color: #363636;
               }
