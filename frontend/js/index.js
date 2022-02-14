@@ -1,6 +1,7 @@
 let product_data;
 let supplier_list;
 let category_list;
+let temp_product_data;
 
 function openOperationWindow(index) {
     var openelement=document.getElementsByClassName("tableoperationwindow");
@@ -91,7 +92,25 @@ async function init_products() {
         }
         return 0;
     })
+    temp_data = product_data
     update_products_table(product_data)
+}
+
+const prodViewMenu = document.getElementById("prod-view");
+prodViewMenu.addEventListener("change", (e)=>{
+    filterByQty(e.target.value)
+})
+
+function filterByQty(type) {
+    searchInput.value = ""
+    if(type === "all") {
+        temp_product_data = product_data
+    } else if (type === "out_of_stock") {
+        temp_product_data = product_data.filter((p, _) => p.total_qty === 0)
+    } else if (type === "running_out") {
+        temp_product_data = product_data.filter((p, _) => p.total_qty != 0 && ((p.total_qty/p.max_capacity)*100) < 20)
+    }
+    update_products_table(temp_product_data)
 }
 
 const searchInput = document.getElementById("prod-search");
@@ -104,8 +123,8 @@ function filterByName(name) {
         update_products_table(product_data)
         return
     }
-    newProduct = product_data.filter((p, _) => p.prod_name.toLowerCase().includes(name.toLowerCase()))
-    update_products_table(newProduct)
+    temp_product_data = temp_product_data.filter((p, _) => p.prod_name.toLowerCase().includes(name.toLowerCase()))
+    update_products_table(temp_product_data)
 }
 
 async function add_product(){
