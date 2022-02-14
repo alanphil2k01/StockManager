@@ -4,6 +4,9 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/master.css">
         <script defer src="./js/index.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Philosopher&family=Poppins:wght@500&display=swap" rel="stylesheet">
         <title>Stock Manager</title>
     </head>
     <body>
@@ -52,13 +55,14 @@
                             </tr>
                         </thead>
                         <tbody id="productsTableBody">
+                          
                         </tbody>
                     </table>
                 </div><!product listtable ends here>
             </div>
             <div class="addremovesection">
+              <div class="addrmheading"><h3>Add Stock</h3></div>
                 <div class="addstock">
-                    <div class="addrmheading"><h3>Add Stock</h3></div>
                     <div class="addrmstockdetail">
                         <form onsubmit="add_stock()" class="addrmdetailform" action="index.html" method="post">
                             <div class="addrminputs">
@@ -84,8 +88,8 @@
                     </div>
                 </div><!add newstock new ends here>
 
+                <div class="addrmheading"><h3>Remove Stock</h3></div>
                 <div class="removestock"><!Remove stock begins>
-                    <div class="addrmheading"><h3>Remove Stock</h3></div>
                     <div class="addrmstockdetail">
                         <form class="addrmdetailform" action="index.html" method="post">
                             <div class="addrminputs">
