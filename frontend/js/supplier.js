@@ -18,7 +18,7 @@ function update_supplier_table(data) {
 }
 
 async function get_suppliers() {
-    let res = await fetch("http://localhost/supplier", {
+    let res = await fetch("/supplier", {
         "method": "GET",
         "headers": {}
     })
@@ -36,7 +36,7 @@ async function init_suppliers() {
 
 async function add_supplier() {
     sForm = document.getElementsByClassName("supplier-detail-form")[0]
-    const res = await fetch("http://localhost/supplier", {
+    const res = await fetch("/supplier", {
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"

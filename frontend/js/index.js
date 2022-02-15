@@ -41,7 +41,7 @@ function update_products_table(data) {
 }
 
 async function get_products() {
-    let res = await fetch("http://localhost/product", {
+    let res = await fetch("/product", {
         "method": "GET",
         "headers": {}
     })
@@ -50,7 +50,7 @@ async function get_products() {
 }
 
 async function get_suppliers_list() {
-    let res = await fetch("http://localhost/supplier", {
+    let res = await fetch("/supplier", {
         "method": "GET",
         "headers": {}
     })
@@ -66,7 +66,7 @@ async function get_suppliers_list() {
 }
 
 async function get_category_list() {
-    let res = await fetch("http://localhost/product_category", {
+    let res = await fetch("/product_category", {
         "method": "GET",
         "headers": {}
     })
@@ -134,7 +134,7 @@ async function add_product(){
     productRate=Number(document.getElementById("new-product-rate").value);
     productMaxCapacity=Number(document.getElementById("new-product-max-capacity").value);
     productSupplier=Number(document.getElementById("new-product-supplier").value);
-    const res = await fetch("http://localhost/product", {
+    const res = await fetch("/product", {
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -157,7 +157,7 @@ async function add_product(){
 async function new_category(){
     var categoryName=document.getElementById("new-category-name").value;
     var categoryLocation=document.getElementById("new-category-location").value;
-    const res = await fetch("http://localhost/product_category", {
+    const res = await fetch("/product_category", {
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -174,11 +174,12 @@ async function new_category(){
 }
 
 async function add_stock(){
+    product_data = await get_products()
     newStockStockId=document.getElementById("newstock-stockid").value;
     newStockProductId=document.getElementById("newstock-prodid").value;
     newStockExpDate=document.getElementById("newstock-expdate").value;
     newStockQty=Number(document.getElementById("newstock-quantity").value);
-    const res = await fetch("http://localhost/stock", {
+    const res = await fetch("/stock", {
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -196,6 +197,7 @@ async function add_stock(){
 }
 
 async function remove_stock(){
+    product_data = await get_products()
     removeStockProdId=document.getElementById("rmstock-prodid").value;
     removeStockQty=Number(document.getElementById("rmstock-quantity").value);
     for(var i=0; i<product_data.length; i++) {
@@ -204,7 +206,7 @@ async function remove_stock(){
             return
         }
     }
-    const res = await fetch("http://localhost/stock/".concat(removeStockProdId, "/", removeStockQty), {
+    const res = await fetch("/stock/".concat(removeStockProdId, "/", removeStockQty), {
         "method": "DELETE",
         "headers": {}
     })

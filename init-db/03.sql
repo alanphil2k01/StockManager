@@ -39,31 +39,24 @@ BEGIN
         ELSE
             SELECT COUNT(*) INTO stock_count
             FROM stocks AS s
-            WHERE s.stock_id = stock_id;
+            WHERE s.stock_id = stock_id AND s.prod_id = prod_id;
             IF stock_count = 0 THEN
                 INSERT INTO stocks(stock_id, expiry_date, prod_id) VALUES
                 (stock_id, expiry, prod_id);
             END IF;
-            SELECT s.prod_id INTO pid
-            FROM stocks AS s
-            WHERE s.stock_id = stock_id;
-            IF pid <> prod_id THEN
-                SET STATUS = "REJECTED - Mismatch in prod_id";
+            SELECT total_qty, max_capacity INTO curr_qty, max_qty
+            FROM products AS p
+            WHERE p.prod_id = prod_id;
+            IF curr_qty + qty > max_qty THEN
+                SET status = "REJECTED - Over max capacity";
             ELSE
-                SELECT total_qty, max_capacity INTO curr_qty, max_qty
-                FROM products AS p
-                WHERE p.prod_id = prod_id;
-                IF curr_qty + qty > max_qty THEN
-                    SET status = "REJECTED - Over max capacity";
-                ELSE
-                    UPDATE products AS p
-                        SET p.total_qty = p.total_qty + qty
-                        WHERE p.prod_id = prod_id;
-                    UPDATE stocks AS s
-                        SET s.curr_qty = s.curr_qty + qty
-                        WHERE s.stock_id = stock_id;
-                    SET status = "ACCEPTED";
-                END IF;
+                UPDATE products AS p
+                    SET p.total_qty = p.total_qty + qty
+                    WHERE p.prod_id = prod_id;
+                UPDATE stocks AS s
+                    SET s.curr_qty = s.curr_qty + qty
+                    WHERE s.stock_id = stock_id AND s.prod_id = prod_id;
+                SET status = "ACCEPTED";
             END IF;
         END IF;
     END IF;
@@ -79,39 +72,45 @@ CREATE PROCEDURE remove_stock(
 BEGIN
     DECLARE stock_id VARCHAR(30);
     DECLARE status, action VARCHAR(30);
-    DECLARE stock_qty INT;
+    DECLARE stock_qty, total_qty INT;
     DECLARE expiry DATE;
     DECLARE finished INTEGER DEFAULT 0;
     DECLARE stock_cur CURSOR FOR
         SELECT s.stock_id, s.curr_qty, s.expiry_date FROM stocks as s
-            WHERE s.prod_id = prod_id
-            ORDER BY s.expiry_date;
+        WHERE s.prod_id = prod_id
+        ORDER BY s.expiry_date;
     DECLARE CONTINUE HANDLER
         FOR NOT FOUND SET finished = 1;
-    START TRANSACTION;
-    OPEN stock_cur;
-    UPDATE products AS p SET p.total_qty = p.total_qty - qty WHERE p.prod_id = prod_id;
-    removeStocks: LOOP
-        FETCH stock_cur INTO stock_id, stock_qty, expiry;
-        IF finished = 1 THEN
-            LEAVE removeStocks;
-        END IF;
-        IF stock_qty > qty THEN
-            UPDATE stocks AS s SET s.curr_qty = s.curr_qty - qty
-                WHERE s.stock_id = stock_id;
-            CALL add_log(stock_id, prod_id, qty, CURDATE(), expiry, "REMOVE", "MOVED TO STORE");
-            LEAVE removeStocks;
-        ELSE
-            DELETE FROM stocks AS s WHERE s.stock_id = stock_id;
-            SET qty = qty - stock_qty;
-            IF qty = 0 THEN
+    SELECT p.total_qty INTO total_qty
+        FROM products AS p
+        WHERE p.prod_id = prod_id;
+    IF total_qty >= qty THEN
+        START TRANSACTION;
+        OPEN stock_cur;
+        UPDATE products AS p SET p.total_qty = p.total_qty - qty WHERE p.prod_id = prod_id;
+        removeStocks: LOOP
+            FETCH stock_cur INTO stock_id, stock_qty, expiry;
+            IF finished = 1 THEN
                 LEAVE removeStocks;
             END IF;
-            CALL add_log(stock_id, prod_id, stock_qty, CURDATE(), expiry, "REMOVE", "OUT OF STOCK");
-        END IF;
-    END LOOP removeStocks;
-    CLOSE stock_cur;
-    COMMIT;
+            SELECT stock_id AS stock_id, prod_id AS produ_id;
+            IF stock_qty > qty THEN
+                UPDATE stocks AS s SET s.curr_qty = s.curr_qty - qty
+                    WHERE s.stock_id = stock_id AND s.prod_id = prod_id;
+                CALL add_log(stock_id, prod_id, qty, CURDATE(), expiry, "REMOVE", "MOVED TO STORE");
+                LEAVE removeStocks;
+            ELSE
+                DELETE FROM stocks AS s WHERE s.stock_id = stock_id AND s.prod_id = prod_id;
+                SET qty = qty - stock_qty;
+                CALL add_log(stock_id, prod_id, stock_qty, CURDATE(), expiry, "REMOVE", "OUT OF STOCK");
+                IF qty = 0 THEN
+                    LEAVE removeStocks;
+                END IF;
+            END IF;
+        END LOOP removeStocks;
+        CLOSE stock_cur;
+        COMMIT;
+    END IF;
 END //
 DELIMITER ;
 

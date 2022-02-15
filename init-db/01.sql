@@ -15,7 +15,7 @@ CREATE TABLE stocks (
     expiry_date     DATE,
     curr_qty        INT             DEFAULT(0),
     prod_id         VARCHAR(30)     NOT NULL,
-    PRIMARY KEY    (stock_id)
+    PRIMARY KEY    (prod_id, stock_id)
 );
 
 CREATE TABLE stock_logs (

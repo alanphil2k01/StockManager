@@ -18,7 +18,7 @@ function update_stock_table(data) {
 }
 
 async function get_stocks() {
-    let res = await fetch("http://localhost/stock", {
+    let res = await fetch("/stock", {
         "method": "GET",
         "headers": {}
     })

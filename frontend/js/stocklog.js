@@ -20,12 +20,33 @@ function update_stock_log_table(data) {
 }
 
 async function get_stock_logs() {
-    let res = await fetch("http://localhost/stock_log", {
+    let res = await fetch("/stock_log", {
         "method": "GET",
         "headers": {}
     })
     let data = await res.json()
     return data["data"]
+}
+
+const stockLogView = document.getElementById("stock-log-view")
+stockLogView.addEventListener("change",(e) => {
+    getStockLogBy(e.target.value)
+})
+
+async function getStockLogBy(type) {
+    var stmt
+    if (type === "-1") {
+        stmt = "/all"
+    } else {
+        stmt = "/".concat(type);
+    }
+    let res = await fetch("/stock_log".concat(stmt), {
+        "method": "GET",
+        "headers": {}
+    })
+    let data = await res.json()
+    stock_log_data = data["data"]
+    update_stock_log_table(stock_log_data)
 }
 
 async function init_stock_logs() {
