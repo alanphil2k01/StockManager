@@ -20,8 +20,13 @@ function update_supplier_table(data) {
 async function get_suppliers() {
     let res = await fetch("/supplier", {
         "method": "GET",
-        "headers": {}
+        "headers": {
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
+        }
     })
+    if (res.status === 401) {
+        window.location.href = "/"
+    }
     let data = await res.json()
     return data["data"]
 }
@@ -39,6 +44,7 @@ async function add_supplier() {
     const res = await fetch("/supplier", {
         "method": "POST",
         "headers": {
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
             "Content-Type": "application/json"
         },
         "body": JSON.stringify({
@@ -49,6 +55,9 @@ async function add_supplier() {
             phone_no: sForm[4].value
         })
     })
+    if (res.status === 401) {
+        alert("Unauthorized")
+    }
     const data = await res.json();
     console.log(data)
     init_suppliers()

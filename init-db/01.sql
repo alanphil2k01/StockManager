@@ -48,11 +48,11 @@ CREATE TABLE product_categories (
 );
 
 CREATE TABLE users (
-    username        VARCHAR(30),
-    password        VARCHAR(30),
-    email           VARCHAR(30),
-    name            VARCHAR(30),
-    role            CHAR             DEFAULT('U'),
+    username        VARCHAR(30)     NOT NULL,
+    password        VARCHAR(100)     NOT NULL,
+    email           VARCHAR(30)     NOT NULL,
+    name            VARCHAR(30)     NOT NULL,
+    role            INT             DEFAULT(0),
     PRIMARY KEY     (username)
 );
 

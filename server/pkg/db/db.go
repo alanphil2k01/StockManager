@@ -39,9 +39,3 @@ func RemoveExpired() error {
 	log.Println("Remove expired stocks")
 	return nil
 }
-
-func GetSupplier() {
-}
-
-func InsertSupplier() {
-}

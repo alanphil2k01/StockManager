@@ -57,6 +57,10 @@ func PutSupplier(w http.ResponseWriter, r *http.Request) {
 		responsMessage(w, r, "Error - invalid input json", http.StatusBadRequest, nil)
 		return
 	}
+	if utils.ValidateEmail(supplier.S_email) || utils.ValidatePhoneNo(supplier.Phone_no) {
+		responsMessage(w, r, "Error - invalid input format", http.StatusBadRequest, nil)
+		return
+	}
 	err := db.PutSupplier(supplier)
 	if err != nil {
 		responsMessage(w, r, "Error - inserting suppliers", http.StatusInternalServerError, err)

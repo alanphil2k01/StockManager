@@ -43,8 +43,15 @@ function update_products_table(data) {
 async function get_products() {
     let res = await fetch("/product", {
         "method": "GET",
-        "headers": {}
+        "headers": {
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
+        }
     })
+    if (res.status === 401) {
+        window.location.href = "/login.html";
+        return
+
+    }
     let data = await res.json()
     return data["data"]
 }
@@ -52,7 +59,9 @@ async function get_products() {
 async function get_suppliers_list() {
     let res = await fetch("/supplier", {
         "method": "GET",
-        "headers": {}
+        "headers": {
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
+        }
     })
     let data = await res.json()
     supplier_list = data["data"]
@@ -68,7 +77,9 @@ async function get_suppliers_list() {
 async function get_category_list() {
     let res = await fetch("/product_category", {
         "method": "GET",
-        "headers": {}
+        "headers": {
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
+        }
     })
     let data = await res.json()
     category_list = data["data"]
@@ -137,7 +148,8 @@ async function add_product(){
     const res = await fetch("/product", {
         "method": "POST",
         "headers": {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
         },
         "body": JSON.stringify({
             prod_id: productId,
@@ -148,6 +160,9 @@ async function add_product(){
             max_capacity: productMaxCapacity
         })
     })
+    if (res.status === 401) {
+        alert('Unauthorized')
+    }
     const data = res.json()
     console.log(data)
     init_products()
@@ -160,6 +175,7 @@ async function new_category(){
     const res = await fetch("/product_category", {
         "method": "POST",
         "headers": {
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
             "Content-Type": "application/json"
         },
         "body": JSON.stringify({
@@ -167,6 +183,9 @@ async function new_category(){
             warehouse_loc: categoryLocation
         })
     })
+    if (res.status === 401) {
+        alert('Unauthorized')
+    }
     const data = await res.json()
     console.log(data)
     get_category_list()
@@ -182,6 +201,7 @@ async function add_stock(){
     const res = await fetch("/stock", {
         "method": "POST",
         "headers": {
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
             "Content-Type": "application/json"
         },
         "body": JSON.stringify({
@@ -191,6 +211,9 @@ async function add_stock(){
             expiry_date: newStockExpDate
         })
     })
+    if (res.status === 401) {
+        alert('Unauthorized')
+    }
     const data = await res.json()
     console.log(data)
     init_products()
@@ -208,8 +231,13 @@ async function remove_stock(){
     }
     const res = await fetch("/stock/".concat(removeStockProdId, "/", removeStockQty), {
         "method": "DELETE",
-        "headers": {}
+        "headers": {
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
+        }
     })
+    if (res.status === 401) {
+        alert('Unauthorized')
+    }
     const data = await res.json()
     console.log(data)
     init_products()

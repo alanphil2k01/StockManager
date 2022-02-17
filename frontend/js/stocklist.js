@@ -20,8 +20,13 @@ function update_stock_table(data) {
 async function get_stocks() {
     let res = await fetch("/stock", {
         "method": "GET",
-        "headers": {}
+        "headers": {
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
+        }
     })
+    if (res.status === 401) {
+        window.location.href = "/"
+    }
     let data = await res.json()
     return data["data"]
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script defer src="./js/login.js"></script>
+</head>
+<body>
+    Login
+     <form class="login-form" action="index.html" method="post" onsubmit="return add_supplier()">
+       <div class="form-input-container">
+          <label for="username">Username</label>
+          <input id="username-login" name="username" type="text" placeholder="username" required></input>
+       </div>
+       <div class="form-input-container">
+          <label for="password">Password</label>
+          <input id="password-login" name="password" type="text" placeholder="password" required></input>
+       </div>
+       <div class="button-container">
+         <button onclick="login()" class="addbutton" type="button" name="button">Login</button>
+       </div>
+     </form>
+</body>
+</html>

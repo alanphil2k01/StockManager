@@ -1,7 +1,10 @@
 package types
 
+import "github.com/golang-jwt/jwt"
+
 const (
 	USER = iota
+	STAFF
 	ADIMINISTATOR
 )
 
@@ -58,7 +61,13 @@ type Users struct {
 	Password string `json:"password"`
 	Email    string `json:"email"`
 	Name     string `json:"name"`
-	Role     string `json:"role"`
+	Role     uint   `json:"role"`
+}
+
+type UserClaims struct {
+    Username string `json:"username"`
+    Role     uint
+    jwt.StandardClaims
 }
 
 type ProductsList struct {

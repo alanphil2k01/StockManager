@@ -22,8 +22,13 @@ function update_stock_log_table(data) {
 async function get_stock_logs() {
     let res = await fetch("/stock_log", {
         "method": "GET",
-        "headers": {}
+        "headers": {
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
+        }
     })
+    if (res.status === 401) {
+        window.location.href = "/"
+    }
     let data = await res.json()
     return data["data"]
 }
@@ -42,8 +47,13 @@ async function getStockLogBy(type) {
     }
     let res = await fetch("/stock_log".concat(stmt), {
         "method": "GET",
-        "headers": {}
+        "headers": {
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
+        }
     })
+    if (res.status === 401) {
+        window.location.href = "/"
+    }
     let data = await res.json()
     stock_log_data = data["data"]
     update_stock_log_table(stock_log_data)
