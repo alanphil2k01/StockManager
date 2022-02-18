@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script defer src="./js/login.js"></script>
+</head>
+<body>
+    Regiister
+     <form class="register-form" action="index.html" method="post" onsubmit="return add_supplier()">
+       <div class="form-input-container">
+          <label for="username">Username</label>
+          <input id="username-register" name="username" type="text" placeholder="username" required></input>
+       </div>
+       <div class="form-input-container">
+          <label for="name">Name</label>
+          <input id="name-register" name="name" type="text" placeholder="name" required></input>
+       </div>
+       <div class="form-input-container">
+          <label for="email">Email</label>
+          <input id="email-register" name="email" type="text" placeholder="email" required></input>
+       </div>
+       <div class="form-input-container">
+          <label for="password">Password</label>
+          <input id="password-register" name="password" type="text" placeholder="password" required></input>
+       </div>
+       <div class="form-input-container">
+          <label for="confirm-password">Confirm Password</label>
+          <input id="confirm-password-register" name="confirm-password" type="text" placeholder="confirm-password" required></input>
+       </div>
+       <div class="view-container">
+          <form>
+            <label for="role select">Role:</label>
+            <select id="role-register" class="viewlist" name="role" id="">
+              <option value=0>User</option>
+              <option value=1>Staff</option>
+              <option value=2>Administrator</option>
+            </select>
+          </form>
+        </div>
+       <div class="form-input-container">
+          <label for="secret">Secret Key</label>
+          <input id="secret-register" name="secret" type="text" placeholder="secret"></input>
+       </div>
+       <div class="button-container">
+         <button onclick="register()" class="addbutton" type="button" name="button">Register</button>
+       </div>
+     </form>
+     <label for="login">Already have an account? </label>
+    <a href="login.html">login</a>
+</body>
+</html>

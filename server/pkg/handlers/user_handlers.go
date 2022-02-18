@@ -9,6 +9,11 @@ import (
 	"github.com/alanphil2k01/SSMC/pkg/utils"
 )
 
+type secretKey struct {
+    Secret string `json:"secret"`
+}
+
+
 func CheckAuth(next http.HandlerFunc, role uint) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
         authHeader := strings.Split(r.Header.Get("Authorization"), "Bearer ")
@@ -28,11 +33,25 @@ func CheckAuth(next http.HandlerFunc, role uint) http.Handler {
 
 func RegisterUser(w http.ResponseWriter, r *http.Request) {
 	var user types.Users
+	var secret secretKey
 	utils.ParseBody(r, &user)
-	if user.Username == "" || user.Password == "" || user.Name == "" || user.Email == "" || user.Role == 0 {
+	utils.ParseBody(r, &secret)
+	if user.Username == "" || user.Password == "" || user.Name == "" || user.Email == "" || user.Role > 3 {
 		responsMessage(w, r, "Error - invalid input json", http.StatusBadRequest, nil)
 		return
 	}
+    if user.Role == types.STAFF {
+        if secret.Secret != utils.GetEnv("STAFF_SECRET", "staff_secret") {
+            responsMessage(w, r, "Error - unauthorized", http.StatusUnauthorized, nil)
+            return
+        }
+    }
+    if user.Role == types.ADIMINISTATOR {
+        if secret.Secret != utils.GetEnv("ADMIN_SECRET", "admin_secret") {
+            responsMessage(w, r, "Error - unauthorized", http.StatusUnauthorized, nil)
+            return
+        }
+    }
     user.Password = utils.HashPass(user.Password)
 	err := db.RegisterUser(user)
 	if err != nil {
@@ -41,7 +60,7 @@ func RegisterUser(w http.ResponseWriter, r *http.Request) {
 	}
     tokenString, err := utils.GetJWTtoken(user.Username, user.Role)
     if err != nil {
-		responsMessage(w, r, "Error - registring user", http.StatusInternalServerError, err)
+		responsMessage(w, r, "Error - creating jwt", http.StatusInternalServerError, err)
 		return
     }
     responsMessage(w, r, "Registered user", http.StatusOK, tokenString)
@@ -61,7 +80,7 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
         return
     }
     if !ok {
-        responsMessage(w, r, "Error - Invalid Credentials", http.StatusInternalServerError, err)
+        responsMessage(w, r, "Error - Invalid Credentials", http.StatusUnauthorized, err)
         return
     }
     tokenString, err := utils.GetJWTtoken(user.Username, role)

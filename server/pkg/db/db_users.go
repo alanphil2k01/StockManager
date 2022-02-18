@@ -12,7 +12,7 @@ func LoginUser(username, password string) (bool, uint, error) {
 	var role, count uint
 	row := db.QueryRow("SELECT COUNT(*) FROM users WHERE username = ?", username)
     if row.Scan(&count); count != 1 {
-		return false, 0, errors.New("invalid Credentials")
+		return false, 0, errors.New("invalid credentials")
     }
 	row = db.QueryRow("SELECT password, role FROM users WHERE username = ?", username)
 	err := row.Scan(&hash, &role)
@@ -23,6 +23,11 @@ func LoginUser(username, password string) (bool, uint, error) {
 }
 
 func RegisterUser(user types.Users) error {
+    var count uint
+	row := db.QueryRow("SELECT COUNT(*) FROM users WHERE email = ?", user.Email)
+    if row.Scan(&count); count != 1 {
+		return errors.New("email already exists")
+    }
 	stmt, err := db.Prepare("INSERT INTO users(username, password, email, name, role) VaLUES (?, ?, ?, ?, ?)")
 	if err != nil {
 		return err

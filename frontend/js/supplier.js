@@ -58,6 +58,10 @@ async function add_supplier() {
     if (res.status === 401) {
         alert("Unauthorized")
     }
+    if (res.status === 400) {
+        alert("Invalid input")
+        return
+    }
     const data = await res.json();
     console.log(data)
     init_suppliers()

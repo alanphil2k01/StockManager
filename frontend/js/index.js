@@ -50,7 +50,6 @@ async function get_products() {
     if (res.status === 401) {
         window.location.href = "/login.html";
         return
-
     }
     let data = await res.json()
     return data["data"]
@@ -163,6 +162,10 @@ async function add_product(){
     if (res.status === 401) {
         alert('Unauthorized')
     }
+    if (res.status === 400) {
+        alert("Invalid input")
+        return
+    }
     const data = res.json()
     console.log(data)
     init_products()
@@ -185,6 +188,10 @@ async function new_category(){
     })
     if (res.status === 401) {
         alert('Unauthorized')
+    }
+    if (res.status === 400) {
+        alert("Invalid input")
+        return
     }
     const data = await res.json()
     console.log(data)
@@ -213,6 +220,10 @@ async function add_stock(){
     })
     if (res.status === 401) {
         alert('Unauthorized')
+    }
+    if (res.status === 400) {
+        alert("Invalid input")
+        return
     }
     const data = await res.json()
     console.log(data)

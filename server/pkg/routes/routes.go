@@ -17,10 +17,10 @@ func RegisterRoutes(router *mux.Router) {
 	router.Handle("/product/{prod_id}", h.CheckAuth(h.UpdateProduct, t.ADIMINISTATOR)).Methods("PUT")
 	router.Handle("/product/{prod_id}", h.CheckAuth(h.DeleteProduct, t.ADIMINISTATOR)).Methods("DELETE")
 
-	router.Handle("/supplier", h.CheckAuth(h.GetSuppliers, t.STAFF)).Methods("GET")
+	router.Handle("/supplier", h.CheckAuth(h.GetSuppliers, t.USER)).Methods("GET")
 	router.Handle("/supplier", h.CheckAuth(h.PutSupplier, t.ADIMINISTATOR)).Methods("POST")
-	router.Handle("/supplier/{supplier_id}", h.CheckAuth(h.GetSupplierById, t.STAFF)).Methods("GET")
-	router.Handle("/supplier/search/{s_name}", h.CheckAuth(h.GetSuppliersByName, t.STAFF)).Methods("GET")
+	router.Handle("/supplier/{supplier_id}", h.CheckAuth(h.GetSupplierById, t.USER)).Methods("GET")
+	router.Handle("/supplier/search/{s_name}", h.CheckAuth(h.GetSuppliersByName, t.USER)).Methods("GET")
 	router.Handle("/supplier/{supplier_id}", h.CheckAuth(h.UpdateSupplier, t.ADIMINISTATOR)).Methods("PUT")
 	router.Handle("/supplier/{supplier_id}", h.CheckAuth(h.DeleteSupplier, t.ADIMINISTATOR)).Methods("DELETE")
 
