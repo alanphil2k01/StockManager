@@ -1,9 +1,11 @@
 package db
 
 import (
+	"errors"
 	"log"
 
 	"github.com/alanphil2k01/SSMC/pkg/types"
+	"github.com/alanphil2k01/SSMC/pkg/utils"
 )
 
 func GetProductCategories() ([]types.ProductCategories, error) {
@@ -82,10 +84,10 @@ func UpdateProductCategory(cat_id int, c types.ProductCategories) error {
 	if err != nil {
 		return err
 	}
-	if c.Cat_name == "" {
+	if c.Cat_name == "" || !utils.ValidateName(c.Cat_name) {
 		c.Cat_name = category.Cat_name
 	}
-	if c.Warehouse_loc == "" {
+	if c.Warehouse_loc == "" || !utils.ValidateNameWithNumbers(c.Warehouse_loc){
 		c.Warehouse_loc = category.Warehouse_loc
 	}
 	stmt, err := db.Prepare("UPDATE product_categories SET cat_name=?, warehouse_loc=? WHERE cat_id=?")
@@ -101,6 +103,15 @@ func UpdateProductCategory(cat_id int, c types.ProductCategories) error {
 }
 
 func DeleteProductCategory(cat_id int) error {
+	var count uint
+	row := db.QueryRow("SELECT COUNT(*) FROM products WHERE cat_id = ?", cat_id)
+	err := row.Scan(&count)
+    if count != 0 {
+        return errors.New("there are some products with that category")
+    }
+	if err != nil {
+		return err
+	}
 	stmt, err := db.Prepare("DELETE FROM product_categories WHERE cat_id = ?")
 	if err != nil {
 		return err

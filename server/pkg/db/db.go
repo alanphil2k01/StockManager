@@ -36,6 +36,6 @@ func RemoveExpired() error {
 	if err != nil {
 		return err
 	}
-	log.Println("Remove expired stocks")
+	log.Println("Removed expired stocks")
 	return nil
 }

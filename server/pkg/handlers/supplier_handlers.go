@@ -51,17 +51,17 @@ func GetSuppliersByName(w http.ResponseWriter, r *http.Request) {
 }
 
 func PutSupplier(w http.ResponseWriter, r *http.Request) {
-	var supplier types.Suppliers
-	utils.ParseBody(r, &supplier)
-	if supplier.S_name == "" || supplier.S_email == "" || supplier.Manager == "" || supplier.Address == "" || supplier.Phone_no == "" {
+	var s types.Suppliers
+	utils.ParseBody(r, &s)
+	if s.S_name == "" || s.S_email == "" || s.Manager == "" || s.Address == "" || s.Phone_no == "" {
 		responsMessage(w, r, "Error - invalid input json", http.StatusBadRequest, nil)
 		return
 	}
-	if utils.ValidateEmail(supplier.S_email) || utils.ValidatePhoneNo(supplier.Phone_no) {
+	if !utils.ValidateName(s.S_name) || !utils.ValidateName(s.Manager) || !utils.ValidateEmail(s.S_email) || !utils.ValidatePhoneNo(s.Phone_no) || !utils.ValidateAddress(s.Address){
 		responsMessage(w, r, "Error - invalid input format", http.StatusBadRequest, nil)
 		return
 	}
-	err := db.PutSupplier(supplier)
+	err := db.PutSupplier(s)
 	if err != nil {
 		responsMessage(w, r, "Error - inserting suppliers", http.StatusInternalServerError, err)
 		return

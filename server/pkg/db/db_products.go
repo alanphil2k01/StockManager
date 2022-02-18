@@ -1,7 +1,10 @@
 package db
 
 import (
+	"errors"
+
 	"github.com/alanphil2k01/SSMC/pkg/types"
+	"github.com/alanphil2k01/SSMC/pkg/utils"
 )
 
 func GetProducts() ([]types.ProductsList, error) {
@@ -97,11 +100,10 @@ func PutProduct(p types.Products) error {
 
 func UpdateProduct(prod_id string, p types.ProductsList) error {
 	var product types.ProductsList
-	row := db.QueryRow("SELECT prod_id, prod_name, rate, total_qty, max_capacity, supplier_id, s_name, cat_id, cat_name FROM products_list WHERE prod_id = ?", prod_id)
+	row := db.QueryRow("SELECT prod_id, prod_name, rate, max_capacity, supplier_id, s_name, cat_id, cat_name FROM products_list WHERE prod_id = ?", prod_id)
 	err := row.Scan(&product.Prod_id,
 		&product.Prod_name,
 		&product.Rate,
-		&product.Total_qty,
 		&product.Max_capacity,
 		&product.Supplier_id,
 		&product.S_name,
@@ -110,7 +112,7 @@ func UpdateProduct(prod_id string, p types.ProductsList) error {
 	if err != nil {
 		return err
 	}
-	if p.Prod_name == "" {
+	if p.Prod_name == "" || !utils.ValidateNameWithNumbers(p.Prod_name){
 		p.Prod_name = product.Prod_name
 	}
 	if p.Rate == 0 {
@@ -138,6 +140,15 @@ func UpdateProduct(prod_id string, p types.ProductsList) error {
 }
 
 func DeleteProduct(prod_id string) error {
+	var count uint
+	row := db.QueryRow("SELECT total_qty FROM products WHERE prod_id = ?", prod_id)
+	err := row.Scan(&count)
+    if count != 0 {
+        return errors.New("product has some quantity left")
+    }
+	if err != nil {
+		return err
+	}
 	stmt, err := db.Prepare("DELETE FROM products WHERE prod_id = ?")
 	if err != nil {
 		return err

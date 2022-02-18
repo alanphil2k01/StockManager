@@ -1,7 +1,10 @@
 package db
 
 import (
+	"errors"
+
 	"github.com/alanphil2k01/SSMC/pkg/types"
+	"github.com/alanphil2k01/SSMC/pkg/utils"
 )
 
 func GetSuppliers() ([]types.Suppliers, error) {
@@ -93,19 +96,19 @@ func UpdateSupplier(supplier_id int, s types.Suppliers) error {
 	if err != nil {
 		return err
 	}
-	if s.S_name == "" {
+	if s.S_name == "" || !utils.ValidateName(s.S_name) {
 		s.S_name = supplier.S_name
 	}
-	if s.S_email == "" {
+	if s.S_email == "" || !utils.ValidateEmail(s.S_email) {
 		s.S_email = supplier.S_email
 	}
-	if s.Manager == "" {
+	if s.Manager == "" || !utils.ValidateName(s.Manager){
 		s.Manager = supplier.Manager
 	}
-	if s.Address == "" {
+	if s.Address == "" || !utils.ValidateAddress(s.Address) {
 		s.Address = supplier.Address
 	}
-	if s.Phone_no == "" {
+	if s.Phone_no == "" || !utils.ValidatePhoneNo(s.Phone_no) {
 		s.Phone_no = supplier.Phone_no
 	}
 	stmt, err := db.Prepare("UPDATE suppliers SET s_name=?, s_email=?, manager=?, address=?, phone_no=? WHERE supplier_id=?")
@@ -121,6 +124,15 @@ func UpdateSupplier(supplier_id int, s types.Suppliers) error {
 }
 
 func DeleteSupplier(supplier_id int) error {
+	var count uint
+	row := db.QueryRow("SELECT COUNT(*) FROM products WHERE supplier_id = ?", supplier_id)
+	err := row.Scan(&count)
+    if count != 0 {
+        return errors.New("supplier currently supplying some products")
+    }
+	if err != nil {
+		return err
+	}
 	stmt, err := db.Prepare("DELETE FROM suppliers WHERE supplier_id = ?")
 	if err != nil {
 		return err

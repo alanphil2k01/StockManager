@@ -56,6 +56,10 @@ func PutProductCategory(w http.ResponseWriter, r *http.Request) {
 		responsMessage(w, r, "Error - invalid input json", http.StatusBadRequest, nil)
 		return
 	}
+    if !utils.ValidateName(category.Cat_name) || !utils.ValidateNameWithNumbers(category.Warehouse_loc) {
+		responsMessage(w, r, "Error - invalid input format", http.StatusBadRequest, nil)
+		return
+    }
 	if category.Warehouse_loc == "" {
 		category.Warehouse_loc = "UNASSIGNED"
 	}

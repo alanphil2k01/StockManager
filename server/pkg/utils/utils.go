@@ -3,7 +3,6 @@ package utils
 import (
 	"encoding/json"
 	"errors"
-	"log"
 	"net/http"
 	"os"
 	"regexp"
@@ -31,12 +30,7 @@ func ParseBody(r *http.Request, x interface{}) {
 }
 
 func HashPass(password string) string {
-	hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.MinCost)
-    log.Println("Hashed Password")
-    log.Println(password)
-	if err != nil {
-		log.Println(err)
-	}
+	hash, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.MinCost)
 	return string(hash)
 }
 
@@ -47,6 +41,31 @@ func CompareHashPass(hash, password string) bool {
 func ValidateEmail(email string) bool {
 	emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
 	return emailRegex.MatchString(email)
+}
+
+func ValidateAddress(name string) bool {
+	nameRegex := regexp.MustCompile(`^[_,\/\.-0-9a-zA-Z\s]+$`)
+	return nameRegex.MatchString(name)
+}
+
+func ValidateNameWithNumbers(name string) bool {
+	nameRegex := regexp.MustCompile(`^[a-zA-Z][_0-9a-zA-Z\s]*$`)
+	return nameRegex.MatchString(name)
+}
+
+func ValidateStrID(id string) bool {
+	idRegex := regexp.MustCompile(`^[a-zA-Z0-9]+$`)
+	return idRegex.MatchString(id)
+}
+
+func ValidateDate(date string) bool {
+	dateRegex := regexp.MustCompile(`^20\d{2}(-|\/)((0[1-9])|(1[0-2]))(-|\/)((0[1-9])|([1-2][0-9])|(3[0-1]))$`)
+	return dateRegex.MatchString(date)
+}
+
+func ValidateName(name string) bool {
+	nameRegex := regexp.MustCompile(`^[a-zA-Z][a-zA-Z\s]*$`)
+	return nameRegex.MatchString(name)
 }
 
 func ValidatePhoneNo(phoneNo string) bool {
@@ -89,8 +108,6 @@ func ValidateToken(jwtToken string, role uint) error {
         return errors.New("token expired")
     }
     if role > claims.Role {
-        log.Println(role)
-        log.Println(claims.Role)
         return errors.New("role is invalid in token")
     }
     return nil

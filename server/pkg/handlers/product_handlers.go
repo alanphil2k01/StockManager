@@ -49,13 +49,17 @@ func GetProductsByName(w http.ResponseWriter, r *http.Request) {
 }
 
 func PutProduct(w http.ResponseWriter, r *http.Request) {
-	var product types.Products
-	utils.ParseBody(r, &product)
-	if product.Prod_id == "" || product.Prod_name == "" || product.Rate == 0 || product.Cat_id == 0 || product.Supplier_id == 0 {
+	var p types.Products
+	utils.ParseBody(r, &p)
+	if p.Prod_id == "" || p.Prod_name == "" || p.Rate == 0 || p.Cat_id == 0 || p.Supplier_id == 0 {
 		responsMessage(w, r, "Error - invalid input json", http.StatusBadRequest, nil)
 		return
 	}
-	err := db.PutProduct(product)
+	if !utils.ValidateNameWithNumbers(p.Prod_name) || !utils.ValidateStrID(p.Prod_id) {
+		responsMessage(w, r, "Error - invalid input format", http.StatusBadRequest, nil)
+		return
+	}
+	err := db.PutProduct(p)
 	if err != nil {
 		responsMessage(w, r, "Error - inserting product", http.StatusInternalServerError, err)
 		return
