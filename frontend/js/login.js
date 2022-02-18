@@ -12,12 +12,12 @@ async function login() {
             password: passwordField.value,
         })
     })
+    let data = await res.json()
     if (res.status === 401) {
         alert("Couldn't Login - Check your crendentials")
     } else if (res.status === 500) {
         alert("Error logging in")
     } else if (res.status === 200){
-        let data = await res.json()
         window.localStorage.setItem('ssmc-jwt', data["data"]);
         window.location.href = "/";
     }
@@ -51,22 +51,17 @@ async function register() {
             password: passwordFieldRegister.value,
             email: emailField.value,
             name: nameField.value,
-            role: roleForm.value,
+            role: Number(roleForm.value),
             secret: secretField.value,
         })
     })
     let data = await res.json()
-    console.log(data["data"])
     if (res.status === 401) {
-        alert("Invalid Secret Key")
-        return
-
+        alert("Invalid secret key")
     } else if (res.status === 500) {
-        alert("Couldn't Register")
-        return
+        alert("username or email alread exists")
     } else if (res.status === 400) {
         alert("Invalid input")
-        return
     } else if (res.status === 200) {
         window.localStorage.setItem('ssmc-jwt', data["data"]);
         window.location.href = "/";

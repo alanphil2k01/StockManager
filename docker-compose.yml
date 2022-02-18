@@ -29,6 +29,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     environment:
+      MYSQL_SERVER_ADDRESS: ${MYSQL_SERVER_ADDRESS}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}

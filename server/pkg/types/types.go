@@ -62,6 +62,7 @@ type Users struct {
 	Email    string `json:"email"`
 	Name     string `json:"name"`
 	Role     uint   `json:"role"`
+	Secret   string `json:"secret"`
 }
 
 type UserClaims struct {

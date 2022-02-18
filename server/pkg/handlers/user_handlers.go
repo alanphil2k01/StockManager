@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"log"
 	"net/http"
 	"strings"
 
@@ -9,7 +10,7 @@ import (
 	"github.com/alanphil2k01/SSMC/pkg/utils"
 )
 
-type secretKey struct {
+type SecretKey struct {
     Secret string `json:"secret"`
 }
 
@@ -33,21 +34,29 @@ func CheckAuth(next http.HandlerFunc, role uint) http.Handler {
 
 func RegisterUser(w http.ResponseWriter, r *http.Request) {
 	var user types.Users
-	var secret secretKey
 	utils.ParseBody(r, &user)
-	utils.ParseBody(r, &secret)
 	if user.Username == "" || user.Password == "" || user.Name == "" || user.Email == "" || user.Role > 3 {
 		responsMessage(w, r, "Error - invalid input json", http.StatusBadRequest, nil)
 		return
 	}
+	if !utils.ValidateNameWithNumbers(user.Username) || user.Password == "" || !utils.ValidateName(user.Name) || !utils.ValidateEmail(user.Email) {
+		responsMessage(w, r, "Error - invalid input format", http.StatusBadRequest, nil)
+		return
+	}
+	if user.Secret == "" {
+		responsMessage(w, r, "Error - invalid input json", http.StatusBadRequest, nil)
+		return
+	} else {
+        log.Println(user.Secret)
+    }
     if user.Role == types.STAFF {
-        if secret.Secret != utils.GetEnv("STAFF_SECRET", "staff_secret") {
+        if user.Secret != utils.GetEnv("STAFF_SECRET", "staff_secret") {
             responsMessage(w, r, "Error - unauthorized", http.StatusUnauthorized, nil)
             return
         }
     }
     if user.Role == types.ADIMINISTATOR {
-        if secret.Secret != utils.GetEnv("ADMIN_SECRET", "admin_secret") {
+        if user.Secret != utils.GetEnv("ADMIN_SECRET", "admin_secret") {
             responsMessage(w, r, "Error - unauthorized", http.StatusUnauthorized, nil)
             return
         }

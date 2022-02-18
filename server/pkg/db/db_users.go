@@ -25,7 +25,7 @@ func LoginUser(username, password string) (bool, uint, error) {
 func RegisterUser(user types.Users) error {
     var count uint
 	row := db.QueryRow("SELECT COUNT(*) FROM users WHERE email = ?", user.Email)
-    if row.Scan(&count); count != 1 {
+    if row.Scan(&count); count == 1 {
 		return errors.New("email already exists")
     }
 	stmt, err := db.Prepare("INSERT INTO users(username, password, email, name, role) VaLUES (?, ?, ?, ?, ?)")
