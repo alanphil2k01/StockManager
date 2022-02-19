@@ -9,4 +9,4 @@
 
 ## Info
 ### ER Diagram
-![er-diagram](./images/ER-Diagram.png)
+![er-diagram](./docs/images/ER-Diagram.png)
