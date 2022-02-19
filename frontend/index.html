@@ -192,29 +192,34 @@
                         <form class="detailform" action="index.html" method="post">
                             <div class="forminputcontainer">
                                 <label for="productid">Product ID</label>
-                                <input id="product-id" name="productid" type="text" placeholder="" required></input>
+                                <select id="edit-product-id" name="category" ini>
+                                </select>
                             </div>
                             <div class="forminputcontainer">
                                 <label for="productname">Product Name</label>
-                                <input id="product-name" name="productname" type="text" placeholder="" required></input>
+                                <input id="edit-product-name" name="productname" type="text" placeholder="" required></input>
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="productqty">Product Qty</label>
+                                <input id="edit-product-qty" name="productqty" type="text" placeholder="" required></input>
                             </div>
                             <div class="forminputcontainer">
                                 <label for="supplier">Supplier Name</label>
-                                <select id="product-supplier" name="category" ini>
+                                <select id="edit-product-supplier" name="category" ini>
                                 </select>
                             </div>
                             <div class="forminputcontainer">
                                 <label for="category">Product Category</label>
-                                <select id="product-category" name="category" ini>
+                                <select id="edit-product-category" name="category" ini>
                                 </select>
                             </div>
                             <div class="forminputcontainer">
                                 <label for="rate">Rate</label></label>
-                            <input id="new-product-rate"  type=number min=0 placeholder="">
+                            <input id="edit-product-rate"  type=number min=0 placeholder="">
                             </div>
                             <div class="forminputcontainer">
                                 <label for="rate">Max Capacity</label></label>
-                            <input id="product-max-capacity"  type=number min=0 placeholder="">
+                            <input id="edit-product-max-capacity"  type=number min=0 placeholder="">
                             </div>
                             <br>
                             <div class="buttoncontainer">

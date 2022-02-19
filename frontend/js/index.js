@@ -1,6 +1,6 @@
 let product_data;
 let supplier_list;
-let category_list;
+let prod_cat_list;
 let temp_product_data;
 
 function openOperationWindow(index) {
@@ -64,14 +64,48 @@ async function get_suppliers_list() {
     })
     let data = await res.json()
     supplier_list = data["data"]
-    const select = document.getElementById("new-product-supplier");
-    select.innerHTML = "";
+    const selectNew = document.getElementById("new-product-supplier");
+    const selectEdit = document.getElementById("edit-product-supplier");
+    selectNew.innerHTML = "";
+    selectEdit.innerHTML = "";
     for (var i=0; i<supplier_list.length; i++) {
         var p= "";
         p += "<option value=\""+supplier_list[i].supplier_id+"\">"+supplier_list[i].s_name+"</option>";
-        select.insertAdjacentHTML("beforeend", p);
+        selectNew.insertAdjacentHTML("beforeend", p);
+        selectEdit.insertAdjacentHTML("beforeend", p);
     }
 }
+
+function get_prod_id_list() {
+    const selectEdit = document.getElementById("edit-product-id");
+    selectEdit.innerHTML = "";
+    for (var i=0; i<product_data.length; i++) {
+        var p= "";
+        p += "<option value=\""+product_data[i].prod_id+"\">"+product_data[i].prod_id+"</option>";
+        selectEdit.insertAdjacentHTML("beforeend", p);
+    }
+    update_edit_form(0)
+}
+
+function update_edit_form(index) {
+    document.getElementById('edit-product-id').value = product_data[index].prod_id
+    document.getElementById('edit-product-category').value = product_data[index].cat_id
+    document.getElementById('edit-product-supplier').value = product_data[index].supplier_id
+    document.getElementById('edit-product-name').value = product_data[index].prod_name
+    document.getElementById('edit-product-rate').value = product_data[index].rate
+    document.getElementById('edit-product-max-capacity').value = product_data[index].max_capacity
+    document.getElementById('edit-product-qty').value = product_data[index].total_qty
+}
+
+const editId = document.getElementById("edit-product-id")
+editId.addEventListener("change", (e) => {
+    for(let i=0; i<product_data.length; i++) {
+        if(product_data[i].prod_id === e.target.value) {
+            update_edit_form(i)
+        }
+    }
+})
+
 
 async function get_category_list() {
     let res = await fetch("/product_category", {
@@ -81,13 +115,16 @@ async function get_category_list() {
         }
     })
     let data = await res.json()
-    category_list = data["data"]
-    const select = document.getElementById("new-product-category");
-    select.innerHTML = "";
-    for (var i=0; i<category_list.length; i++) {
+    prod_cat_list = data["data"]
+    const selectNew = document.getElementById("new-product-category");
+    const selectEdit = document.getElementById("edit-product-category");
+    selectNew.innerHTML = "";
+    selectEdit.innerHTML = "";
+    for (var i=0; i<prod_cat_list.length; i++) {
         var p= "";
-        p += "<option value=\""+category_list[i].cat_id+"\">"+category_list[i].cat_name+"</option>";
-        select.insertAdjacentHTML("beforeend", p);
+        p += "<option value=\""+prod_cat_list[i].cat_id+"\">"+prod_cat_list[i].cat_name+"</option>";
+        selectNew.insertAdjacentHTML("beforeend", p);
+        selectEdit.insertAdjacentHTML("beforeend", p);
     }
 }
 
@@ -104,6 +141,7 @@ async function init_products() {
     })
     temp_data = product_data
     update_products_table(product_data)
+    get_prod_id_list()
 }
 
 const prodViewMenu = document.getElementById("prod-view");
@@ -138,6 +176,41 @@ function filterByName(name) {
 }
 
 async function add_product(){
+    productId=document.getElementById("new-product-id").value;
+    productName=document.getElementById("new-product-name").value;
+    productCategory=Number(document.getElementById("new-product-category").value);
+    productRate=Number(document.getElementById("new-product-rate").value);
+    productMaxCapacity=Number(document.getElementById("new-product-max-capacity").value);
+    productSupplier=Number(document.getElementById("new-product-supplier").value);
+    const res = await fetch("/product", {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
+        },
+        "body": JSON.stringify({
+            prod_id: productId,
+            prod_name: productName,
+            supplier_id: productSupplier,
+            cat_id: productCategory,
+            rate: productRate,
+            max_capacity: productMaxCapacity
+        })
+    })
+    if (res.status === 401) {
+        alert('Unauthorized')
+    }
+    if (res.status === 400) {
+        alert("Invalid input")
+        return
+    }
+    const data = res.json()
+    console.log(data)
+    init_products()
+    closeOperationWindow()
+}
+
+async function edit_product(){
     productId=document.getElementById("new-product-id").value;
     productName=document.getElementById("new-product-name").value;
     productCategory=Number(document.getElementById("new-product-category").value);
