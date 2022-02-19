@@ -43,7 +43,7 @@ func RegisterUser(w http.ResponseWriter, r *http.Request) {
 		responsMessage(w, r, "Error - invalid input format", http.StatusBadRequest, nil)
 		return
 	}
-	if user.Secret == "" {
+	if user.Role != 0 && user.Secret == "" {
 		responsMessage(w, r, "Error - invalid input json", http.StatusBadRequest, nil)
 		return
 	} else {
