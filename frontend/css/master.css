@@ -132,7 +132,7 @@ table td      {background-color:#e1e4e7 ;text-align: center;}
                       transition-property: border-color;
                       transition-delay: 0s;
                       transition-duration: .3s;
-                      float:;
+                      float:left;
                       outline: none;
                     }
 .detailform input:focus  {border-color: #1b5672}
@@ -145,3 +145,5 @@ table td      {background-color:#e1e4e7 ;text-align: center;}
 .addbutton,.removebutton {border: 1px #1b5672 solid;background: #1b5672;color: white;font-weight: 500;}
 .addbutton:hover,.removebutton:hover {background: #0a3c54;color: white;box-shadow: 0px 1px 5px 0px #040404}
 .cancelbutton:hover {border-color: #0a3c54;box-shadow: 0px 1px 5px 0px #040404}
+.search-for-updation {display: block;}
+.deletebutton {border: 1px #1b5672 solid;background: red;color: white;font-weight: 500;}

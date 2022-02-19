@@ -29,6 +29,7 @@
                 <div class="optioncontainer">
                     <div><a href="#" onclick="openOperationWindow(0)">Add New Product</a></div>
                     <div><a href="#" onclick="openOperationWindow(1)">Add New Category</a></div>
+                    <div><a href="#" onclick="openOperationWindow(2)">Edit/Delete Product</a></div>
                     <div class="">
                         <form action="/action_page.php">
                             <label for="view filter">View:</label>
@@ -174,6 +175,57 @@
                     </div>
                 </div>
                 <! Add new category ends here>
+                <!Edit delete product starts>
+                <div class="addproduct tableoperation">
+                    <h3>Edit/Delete Product Details</h3>
+                    <div class="productdetail">
+                      <div class="search-for-updation">
+                        <form class="detailform" action="index.html" method="post">
+                          <div class="forminputcontainer">
+                              <label for="productid">Product ID</label>
+                              <input id="product-id" name="productid" type="text" placeholder="" required></input>
+                          </div>
+                        </form>
+                        <button type="button" name="button">Search</button>
+                      </div>
+                      <br>
+                        <form class="detailform" action="index.html" method="post">
+                            <div class="forminputcontainer">
+                                <label for="productid">Product ID</label>
+                                <input id="product-id" name="productid" type="text" placeholder="" required></input>
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="productname">Product Name</label>
+                                <input id="product-name" name="productname" type="text" placeholder="" required></input>
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="supplier">Supplier Name</label>
+                                <select id="product-supplier" name="category" ini>
+                                </select>
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="category">Product Category</label>
+                                <select id="product-category" name="category" ini>
+                                </select>
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="rate">Rate</label></label>
+                            <input id="new-product-rate"  type=number min=0 placeholder="">
+                            </div>
+                            <div class="forminputcontainer">
+                                <label for="rate">Max Capacity</label></label>
+                            <input id="product-max-capacity"  type=number min=0 placeholder="">
+                            </div>
+                            <br>
+                            <div class="buttoncontainer">
+                                <button class="cancelbutton"type="button" name="button" onclick="closeOperationWindow()">Cancel</button>
+                                <button class="addbutton"type="button" name="button" onclick="add_product()">Update</button>
+                                <button class="deletebutton"type="button" name="button" onclick="add_product()">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!Edit delete product ends here>
             </div><! operation window ends>
         </main>
     </body>

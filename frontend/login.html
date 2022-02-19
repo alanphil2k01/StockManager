@@ -2,25 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <link rel="stylesheet" href="css/login.css">
+    <script defer src="./js/index.js"></script>
+    <script defer src="./js/login.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Philosopher&family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <title>Login</title>
     <script defer src="./js/login.js"></script>
 </head>
 <body>
-    Login
-     <form class="login-form" action="index.html" method="post" onsubmit="return add_supplier()">
-       <div class="form-input-container">
-          <label for="username">Username</label>
-          <input id="username-login" name="username" type="text" placeholder="username" required></input>
-       </div>
-       <div class="form-input-container">
-          <label for="password">Password</label>
-          <input id="password-login" name="password" type="text" placeholder="password" required></input>
-       </div>
-       <div class="button-container">
-         <button onclick="login()" class="addbutton" type="button" name="button">Login</button>
-       </div>
-     </form>
-     <label for="register">Create an account</label>
-    <a href="register.html">register</a>
+  <header>
+      <div class="header">
+          <div class="title"><h1>Stock Manager.</h1></div>
+      </div>
+  </header>
+  <main>
+    <div class="logincontainer">
+      <form class="login-form" action="index.html" method="post" onsubmit="return add_supplier()">
+        <div class="form-input-container">
+           <label for="username">Username</label>
+           <input id="username-login" name="username" type="text" placeholder="username" required></input>
+        </div>
+        <div class="form-input-container">
+           <label for="password">Password</label>
+           <input id="password-login" name="password" type="text" placeholder="password" required></input>
+        </div>
+        <div class="button-container">
+          <button onclick="login()" class="addbutton" type="button" name="button">Login</button>
+        </div>
+      </form>
+      <label for="register">Create an account</label>
+     <a href="register.html">register</a>
+    </div>
+  </main>
 </body>
 </html>
