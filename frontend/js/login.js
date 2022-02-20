@@ -39,6 +39,14 @@ async function register() {
         alert("passwords do not match")
         return
     }
+    if(passwordFieldRegister.value.length<8) {
+        alert("password should be atleast 8 characters")
+        return
+    }
+    if (!/^[0-9a-zA-Z_]{1,}$/.test(userNameFieldRegister.value)) {
+        alert("username should only contain alphabes, numbers and/or under scores")
+        return
+    }
     const res = await fetch("/register", {
         "method": "POST",
         "headers": {

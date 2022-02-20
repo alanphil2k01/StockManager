@@ -57,14 +57,15 @@ async function add_supplier() {
     })
     if (res.status === 401) {
         alert("Unauthorized")
-    }
-    if (res.status === 400) {
+    } else if (res.status === 400) {
         alert("Invalid input")
-        return
+    } else if (res.status === 500) {
+        alert("Couldn't add supplier. Supplier name already exists")
+    } else {
+        const data = await res.json();
+        console.log(data)
+        init_suppliers()
     }
-    const data = await res.json();
-    console.log(data)
-    init_suppliers()
 }
 
 init_suppliers()

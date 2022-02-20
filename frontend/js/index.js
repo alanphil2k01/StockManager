@@ -139,7 +139,7 @@ async function init_products() {
         }
         return 0;
     })
-    temp_data = product_data
+    temp_product_data = product_data
     update_products_table(product_data)
     get_prod_id_list()
 }
@@ -171,8 +171,8 @@ function filterByName(name) {
         update_products_table(product_data)
         return
     }
-    temp_product_data = temp_product_data.filter((p, _) => p.prod_name.toLowerCase().includes(name.toLowerCase()))
-    update_products_table(temp_product_data)
+    temp_data = temp_product_data.filter((p, _) => p.prod_name.toLowerCase().includes(name.toLowerCase()))
+    update_products_table(temp_data)
 }
 
 async function add_product(){
@@ -287,15 +287,16 @@ async function new_category(){
     })
     if (res.status === 401) {
         alert('Unauthorized')
-    }
-    if (res.status === 400) {
+    } else if (res.status === 400) {
         alert("Invalid input")
-        return
+    } else if (res.status === 500) {
+        alert("Couldn't create category. Already exists")
+    } else if (res.status === 200) {
+        const data = await res.json()
+        console.log(data)
+        get_category_list()
+        closeOperationWindow()
     }
-    const data = await res.json()
-    console.log(data)
-    get_category_list()
-    closeOperationWindow()
 }
 
 async function add_stock(){

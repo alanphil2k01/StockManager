@@ -23,7 +23,7 @@
       </div>
       <div class="form-input-container">
          <label for="password">Password</label>
-         <input id="password-login" name="password" type="text" placeholder="" required></input>
+         <input id="password-login" name="password" type="password" placeholder="" required></input>
       </div>
       <div class="login-button-container">
         <button onclick="login()" class="login-button" type="button" name="button">Log In</button>
@@ -68,15 +68,15 @@
           </div>
           <div class="form-input-container">
              <label for="password">Password</label>
-             <input id="password-register" name="password" type="text" placeholder="" required></input>
+             <input id="password-register" name="password" type="password" minlength="8" placeholder="" required></input>
           </div>
           <div class="form-input-container">
              <label for="confirm-password">Confirm Password</label>
-             <input id="confirm-password-register" name="confirm-password" type="text" placeholder="" required></input>
+             <input id="confirm-password-register" name="confirm-password" minlength="8" type="password" placeholder="" required></input>
           </div>
           <div class="form-input-container">
              <label for="secret">Secret Key</label>
-             <input id="secret-register" name="secret" type="text" placeholder=""></input>
+             <input id="secret-register" name="secret" type="password" placeholder=""></input>
           </div>
           <div class="button-container">
             <button onclick="register()" class="create-account" type="button" name="button">Register</button>
