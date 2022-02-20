@@ -27,8 +27,8 @@
 
             <div class="producttablesection">
                 <div class="optioncontainer">
-                    <div><a href="#" onclick="openOperationWindow(0)">Add New Product</a></div>
-                    <div><a href="#" onclick="openOperationWindow(1)">Add New Category</a></div>
+                    <div><a href="#" onclick="openOperationWindow(0)">Add Product</a></div>
+                    <div><a href="#" onclick="openOperationWindow(1)">Add Category</a></div>
                     <div><a href="#" onclick="openOperationWindow(2)">Edit/Delete Product</a></div>
                     <div class="">
                         <form action="/action_page.php">
@@ -179,15 +179,6 @@
                 <div class="addproduct tableoperation">
                     <h3>Edit/Delete Product Details</h3>
                     <div class="productdetail">
-                      <div class="search-for-updation">
-                        <form class="detailform" action="index.html" method="post">
-                          <div class="forminputcontainer">
-                              <label for="productid">Product ID</label>
-                              <input id="product-id" name="productid" type="text" placeholder="" required></input>
-                          </div>
-                        </form>
-                        <button type="button" name="button">Search</button>
-                      </div>
                       <br>
                         <form class="detailform" action="index.html" method="post">
                             <div class="forminputcontainer">
@@ -198,10 +189,6 @@
                             <div class="forminputcontainer">
                                 <label for="productname">Product Name</label>
                                 <input id="edit-product-name" name="productname" type="text" placeholder="" required></input>
-                            </div>
-                            <div class="forminputcontainer">
-                                <label for="productqty">Product Qty</label>
-                                <input id="edit-product-qty" name="productqty" type="text" placeholder="" required></input>
                             </div>
                             <div class="forminputcontainer">
                                 <label for="supplier">Supplier Name</label>
@@ -220,6 +207,9 @@
                             <div class="forminputcontainer">
                                 <label for="rate">Max Capacity</label></label>
                             <input id="edit-product-max-capacity"  type=number min=0 placeholder="">
+                            </div>
+                            <div class="forminputcontainer present-quantity">
+                              Present Quantity: 20
                             </div>
                             <br>
                             <div class="buttoncontainer">
