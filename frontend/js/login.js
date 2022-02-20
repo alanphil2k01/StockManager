@@ -1,15 +1,14 @@
-const userNameField = document.getElementById("username-login")
-const passwordField = document.getElementById("password-login")
-
 async function login() {
+    const userNameFieldLogin = document.getElementById("username-login")
+    const passwordFieldLogin = document.getElementById("password-login")
     const res = await fetch("/login", {
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
         },
         "body": JSON.stringify({
-            username: userNameField.value,
-            password: passwordField.value,
+            username: userNameFieldLogin.value,
+            password: passwordFieldLogin.value,
         })
     })
     let data = await res.json()
@@ -28,15 +27,14 @@ function logout() {
     window.location.href = "/login.html";
 }
 
-const userNameFieldRegister = document.getElementById("username-register")
-const passwordFieldRegister = document.getElementById("password-register")
-const confirmPasswordField = document.getElementById("confirm-password-register")
-const emailField = document.getElementById("email-register")
-const nameField = document.getElementById("name-register")
-const roleForm = document.getElementById("role-register")
-const secretField = document.getElementById("secret-register")
-
 async function register() {
+    const userNameFieldRegister = document.getElementById("username-register")
+    const passwordFieldRegister = document.getElementById("password-register")
+    const confirmPasswordField = document.getElementById("confirm-password-register")
+    const emailField = document.getElementById("email-register")
+    const nameField = document.getElementById("name-register")
+    const roleForm = document.getElementById("role-register")
+    const secretField = document.getElementById("secret-register")
     if(passwordFieldRegister.value != confirmPasswordField.value) {
         alert("passwords do not match")
         return

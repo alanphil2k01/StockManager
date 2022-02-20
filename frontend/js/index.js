@@ -94,7 +94,7 @@ function update_edit_form(index) {
     document.getElementById('edit-product-name').value = product_data[index].prod_name
     document.getElementById('edit-product-rate').value = product_data[index].rate
     document.getElementById('edit-product-max-capacity').value = product_data[index].max_capacity
-    document.getElementById('edit-product-qty').value = product_data[index].total_qty
+    document.getElementById("edit-product-qty").innerHTML = product_data[index].total_qty
 }
 
 const editId = document.getElementById("edit-product-id")
