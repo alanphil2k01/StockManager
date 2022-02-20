@@ -67,3 +67,16 @@ async function register() {
         window.location.href = "/";
     }
 }
+
+
+function openRestrationWindow() {
+    var openelement=document.getElementsByClassName("register-window");
+    openelement[0].style.display="inline-block";
+
+}
+
+function closeRestrationWindow() {
+    var closeelement=document.getElementsByClassName("register-window");
+    closeelement[0].style.display="none";
+    closeelement[0].style.animation="fadeEffect .8s";
+}

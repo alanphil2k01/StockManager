@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/login.css">
-    <script defer src="./js/index.js"></script>
     <script defer src="./js/login.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,29 +11,79 @@
     <script defer src="./js/login.js"></script>
 </head>
 <body>
-  <header>
-      <div class="header">
-          <div class="title"><h1>Stock Manager.</h1></div>
+  <div class="header">
+      <div class="title"><h1>Stock Manager.</h1></div>
+      <div class="tagline"><h3>The perfect tool to manage your store house.</h3></div>
+  </div>
+  <div class="logincontainer">
+    <form class="login-form" action="index.html" method="post" onsubmit="return add_supplier()">
+      <div class="form-input-container">
+         <label for="username">Username</label>
+         <input id="username-login" name="username" type="text" placeholder="" required></input>
       </div>
-  </header>
-  <main>
-    <div class="logincontainer">
-      <form class="login-form" action="index.html" method="post" onsubmit="return add_supplier()">
-        <div class="form-input-container">
-           <label for="username">Username</label>
-           <input id="username-login" name="username" type="text" placeholder="username" required></input>
-        </div>
-        <div class="form-input-container">
-           <label for="password">Password</label>
-           <input id="password-login" name="password" type="text" placeholder="password" required></input>
-        </div>
-        <div class="button-container">
-          <button onclick="login()" class="addbutton" type="button" name="button">Login</button>
-        </div>
-      </form>
-      <label for="register">Create an account</label>
-     <a href="register.html">register</a>
+      <div class="form-input-container">
+         <label for="password">Password</label>
+         <input id="password-login" name="password" type="text" placeholder="" required></input>
+      </div>
+      <div class="login-button-container">
+        <button onclick="login()" class="login-button" type="button" name="button">Log In</button>
+      </div>
+    </form>
+
+    <div class="register-button-container">
+      <p>Doesn't have an Account?</p>
+      <button onclick="openRestrationWindow()" class="register-button" type="button" name="button">Create New Account</button>
     </div>
-  </main>
+  </div>
+
+  <div class="register-window">
+    <div class="registration-container">
+      <div class="closedetails">
+          <img src="icons/close3.png" class="closeicon" onclick="closeRestrationWindow()" alt="Close">
+      </div>
+      <h3>Create New Account</h3>
+      <div class="register-detail-container">
+        <form class="register-form" action="index.html" method="post" onsubmit="return add_supplier()">
+          <div class=" form-input-container view-container">
+             <form>
+               <label for="role select">Role:</label>
+               <select id="role-register" class="viewlist" name="role" id="">
+                 <option value=0>User</option>
+                 <option value=1>Staff</option>
+                 <option value=2>Administrator</option>
+               </select>
+             </form>
+           </div>
+          <div class="form-input-container">
+             <label for="username">Username</label>
+             <input id="username-register" name="username" type="text" placeholder="" required></input>
+          </div>
+          <div class="form-input-container">
+             <label for="name">Name</label>
+             <input id="name-register" name="name" type="text" placeholder="" required></input>
+          </div>
+          <div class="form-input-container">
+             <label for="email">Email</label>
+             <input id="email-register" name="email" type="text" placeholder="" required></input>
+          </div>
+          <div class="form-input-container">
+             <label for="password">Password</label>
+             <input id="password-register" name="password" type="text" placeholder="" required></input>
+          </div>
+          <div class="form-input-container">
+             <label for="confirm-password">Confirm Password</label>
+             <input id="confirm-password-register" name="confirm-password" type="text" placeholder="" required></input>
+          </div>
+          <div class="form-input-container">
+             <label for="secret">Secret Key</label>
+             <input id="secret-register" name="secret" type="text" placeholder=""></input>
+          </div>
+          <div class="button-container">
+            <button onclick="register()" class="register-button" type="button" name="button">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

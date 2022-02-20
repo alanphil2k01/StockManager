@@ -1,19 +1,199 @@
-body          {margin:0;padding:0 0 0 0;height: 100vh;font-family: 'Poppins', sans-serif;}
-.header        {background-color: white;margin:;padding:0% 8% 0 8%;;margin-bottom: 0;
-              color:white;box-shadow: 0px 0px 6px 0px grey;
-              }
-.title        {background-color: white;padding: 1% 0% 1% 0%;display: inline-block;width:30%}
-.title  h1    {font-style:normal;font-size: 140%;font-family:'Poppins', sans-serif;color: #1b5672;
-              display: inline-block;margin:0;
-              box-shadow:0px 0px 0px 0px #9f9b9b;
-              }
-header .tabs  {text-decoration: none;background-color:;width: 65%;text-align: right;float: right;
-              margin: 1.65% 0 0 0; border-bottom: solid #1b5672 0px;}
-header .tabs a {text-decoration: none;color: grey;display: inline-block;
-               margin: 0 0% 0 2.5%;font-size: 96%;font-weight: 500;border-top: 1px solid white;
-               transition-property: border color;transition-duration: .4s;
-               }
-header .tabs a:hover{color:#1b5672;border-top: 1px solid #1b5672; }
-header .tabs #logout:hover{color:#1b5672;border-top: 1px solid red; }
-main          {margin: 3% 0 0 0;padding:0 8% 0 8%;background-color:red ;}
-.logincontainer{background: green;display: inline-block;width: 40%;float: right;}
+body {
+  margin:0;
+  padding:9% 12% 0 12%;
+  max-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+    }
+.header{
+  background-color: #ffffff;
+  margin:;
+  padding:7% 0% 7% 0%;
+  margin-bottom: 0;
+  display: inline-block;float: left;
+  width: 50%;
+  color:white;
+  box-shadow: 0px 0px 0px 0px grey;
+  }
+.title {
+  background-color:#ffffff ;
+  padding: 1% 0% 1% 0%;
+  display: inline-block;
+  width:100%;
+       }
+.title  h1{
+  font-style:normal;
+  font-size: 200%;
+  font-family:'Poppins', sans-serif;
+  color: #1b5672;
+  display: inline-block;
+  margin:0;
+  box-shadow:0px 0px 0px 0px #9f9b9b;
+  }
+.tagline h3{
+  color: grey;
+}
+.logincontainer{
+  background: #ffffff;
+  display: inline-block;
+  width: 30%;
+  float: right;
+  padding: 2% 3% 2% 3%;
+  margin: 3% 0 0 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px 0 #adafb1;
+}
+.form-input-container   {width: 100%;display: inline-block;margin: 2% 5% 2% 0;}
+.form-input-container label{font-size: 80%;color: grey}
+.form-input-container input{
+                      display: inline-block;width: 100%;
+                      color:black;
+                      border-top: none;
+                      border-left: none;
+                      border-right: none;
+                      border-bottom: 1px grey solid;
+                      background-color: inherit;
+                      line-height: 200%;
+                      transition-property: border-color;
+                      transition-delay: 0s;
+                      transition-duration: .3s;
+                      float:left;
+                      outline: none;
+                    }
+.form-input-container input:focus  {border-color: #1b5672}
+.form-input-container input:hover{border-color: #1b5672;}
+.login-button-container{
+  text-align: center;
+  margin: 2% 0 1% 0;
+  padding: 0;
+  float: clear;
+  display:inline-block;
+  width: 100%;
+
+}
+.login-button-container button{
+  margin: 2% 1% 0% 1%;
+  display: inline-block;
+  width: 100%;
+  line-height: 200%;
+  font-size:120%;
+  padding:1% 2% 1% 2%;
+  border: none;
+  border-radius: 10px;
+  transition-duration: .3s;
+  font-weight: 500;
+  background-color:#1b5672;
+  color: #ffffff;
+  transition-property: background;
+  transition-duration: 0.4s;
+  }
+
+.login-button:hover{background-color: #0b3548}
+  .register-button-container{
+    text-align: center;
+    margin: 6% 0 0 0;
+    padding: 0;
+    float: clear;
+    display:inline-block;
+    width: 100%;
+  }
+  .register-button-container button{
+    margin: 3% 0% 0% 0%;
+    display: inline-block;
+    width: ;
+    line-height: 190%;
+    font-size:100%;
+    padding:2% 3% 2% 3%;
+    border-radius: 10px;
+    transition-duration: .3s;
+    font-weight: 500;
+    background-color: #e1e4e7;
+    color: #1b5672;
+    border: 1px solid #1b5672 ;
+    transition-property: background;
+    transition-duration: 0.4s;
+    }
+  .register-button:hover{background-color:#bfc3c7}
+  .register-button-container p{
+    margin:0;
+    font-size: 85%;
+    font-weight:500;
+  }
+
+  .register-window{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    height: 100vh;
+    width: 100%;
+    background-color: #1b5672a1;
+  }
+  .closedetails img{
+    display: inline-block;
+    width:5%;background:white;
+    border-radius: 50%;
+     float: right;
+    box-shadow: 0 0 5px 0px #e1e4e7
+  }
+  .closedetails img:hover{background:#e1e4e7;}
+  .registration-container{
+    background-color: #ffffff;
+    width:30%;
+    margin: 0 35% 0 35%;
+    padding: 2% 2% 2% 2%;
+    display: ;
+    border-radius: 5px;
+    border:white solid 5px;
+    position: absolute;
+    top:10%;
+    max-height: 95vh;
+    overflow-y: scroll;
+    box-shadow: 0px 2px 15px 0px black;
+    text-align: none;
+  }
+  .register-detail-container .form-input-container   {width: 43%;display: inline-block;margin: 2% 5% 2% 0;}
+  .register-detail-container .form-input-container label{font-size: 80%;color: grey}
+  .register-detail-container .form-input-container input{
+                        display: inline-block;width: 100%;
+                        color:black;
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                        border-bottom: 1px grey solid;
+                        background-color: inherit;
+                        line-height: 200%;
+                        transition-property: border-color;
+                        transition-delay: 0s;
+                        transition-duration: .3s;
+                        float:left;
+                        outline: none;
+                      }
+  .register-detail-container .form-input-container input:focus  {border-color: #1b5672}
+  .register-detail-container .form-input-container input:hover{border-color: #1b5672;}
+.register-detail-container .button-container{
+  width: 100%;
+  text-align: center;
+  margin: 5% 0 2% 0;
+}
+.register-button{
+  margin: 3% 0% 0% 0%;
+  display: inline-block;
+  width: ;
+  line-height: 190%;
+  font-size:100%;
+  padding:1% 2% 1% 2%;
+  border-radius: 5px;
+  border: none;
+  transition-duration: .3s;
+  font-weight: 500;
+  background-color: #1b5672;
+  color: #ffffff;
+  transition-property: background;
+  transition-duration: 0.4s;
+}
+.register-button:hover{background-color: #0b3548}
+@keyframes fadeEffect {
+  from{opacity:0}to{opacity: 1}
+  }
