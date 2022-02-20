@@ -211,20 +211,19 @@ async function add_product(){
 }
 
 async function edit_product(){
-    productId=document.getElementById("new-product-id").value;
-    productName=document.getElementById("new-product-name").value;
-    productCategory=Number(document.getElementById("new-product-category").value);
-    productRate=Number(document.getElementById("new-product-rate").value);
-    productMaxCapacity=Number(document.getElementById("new-product-max-capacity").value);
-    productSupplier=Number(document.getElementById("new-product-supplier").value);
-    const res = await fetch("/product", {
-        "method": "POST",
+    productId=document.getElementById("edit-product-id").value;
+    productName=document.getElementById("edit-product-name").value;
+    productCategory=Number(document.getElementById("edit-product-category").value);
+    productRate=Number(document.getElementById("edit-product-rate").value);
+    productMaxCapacity=Number(document.getElementById("edit-product-max-capacity").value);
+    productSupplier=Number(document.getElementById("edit-product-supplier").value);
+    const res = await fetch("/product/".concat(productId), {
+        "method": "PUT",
         "headers": {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
         },
         "body": JSON.stringify({
-            prod_id: productId,
             prod_name: productName,
             supplier_id: productSupplier,
             cat_id: productCategory,
@@ -234,15 +233,42 @@ async function edit_product(){
     })
     if (res.status === 401) {
         alert('Unauthorized')
+    } else if (res.status === 500) {
+        alert("Couldn't update")
+        return
+    } else if (res.status === 201){
+        const data = await res.json()
+        console.log(data)
+        init_products()
+        closeOperationWindow()
     }
-    if (res.status === 400) {
-        alert("Invalid input")
+}
+
+async function delete_product(){
+    productId=document.getElementById("edit-product-id").value;
+    productTotalQty=Number(document.getElementById("edit-product-qty").value);
+    if(productTotalQty > 0) {
+        alert("Cannot remove product. Remove all stock for this product")
         return
     }
-    const data = res.json()
-    console.log(data)
-    init_products()
-    closeOperationWindow()
+    const res = await fetch("/product/".concat(productId), {
+        "method": "DELETE",
+        "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + window.localStorage.getItem('ssmc-jwt'),
+        },
+    })
+    if (res.status === 401) {
+        alert('Unauthorized')
+    } else if (res.status === 500) {
+        alert("Couldn't delete")
+        return
+    } else if (res.status === 200){
+        const data = await res.json()
+        console.log(data)
+        init_products()
+        closeOperationWindow()
+    }
 }
 
 async function new_category(){

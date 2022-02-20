@@ -49,7 +49,7 @@ func ValidateAddress(name string) bool {
 }
 
 func ValidateNameWithNumbers(name string) bool {
-	nameRegex := regexp.MustCompile(`^[a-zA-Z][_0-9a-zA-Z\s]*$`)
+	nameRegex := regexp.MustCompile(`^[a-zA-Z0-9][_0-9a-zA-Z\s]*$`)
 	return nameRegex.MatchString(name)
 }
 
