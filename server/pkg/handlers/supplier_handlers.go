@@ -57,7 +57,7 @@ func PutSupplier(w http.ResponseWriter, r *http.Request) {
 		responsMessage(w, r, "Error - invalid input json", http.StatusBadRequest, nil)
 		return
 	}
-	if !utils.ValidateName(s.S_name) || !utils.ValidateName(s.Manager) || !utils.ValidateEmail(s.S_email) || !utils.ValidatePhoneNo(s.Phone_no) || !utils.ValidateAddress(s.Address){
+	if !utils.ValidateNameWithNumbers(s.S_name) || !utils.ValidateName(s.Manager) || !utils.ValidateEmail(s.S_email) || !utils.ValidatePhoneNo(s.Phone_no) || !utils.ValidateAddress(s.Address){
 		responsMessage(w, r, "Error - invalid input format", http.StatusBadRequest, nil)
 		return
 	}
