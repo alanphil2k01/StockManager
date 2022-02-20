@@ -156,7 +156,7 @@ function filterByQty(type) {
     } else if (type === "out_of_stock") {
         temp_product_data = product_data.filter((p, _) => p.total_qty === 0)
     } else if (type === "running_out") {
-        temp_product_data = product_data.filter((p, _) => p.total_qty != 0 && ((p.total_qty/p.max_capacity)*100) < 20)
+        temp_product_data = product_data.filter((p, _) => p.total_qty != 0 && ((p.total_qty/p.max_capacity)*100) < 5)
     }
     update_products_table(temp_product_data)
 }
@@ -199,15 +199,16 @@ async function add_product(){
     })
     if (res.status === 401) {
         alert('Unauthorized')
-    }
-    if (res.status === 400) {
+    } else if (res.status === 400) {
         alert("Invalid input")
-        return
+    } else if (res.status === 500) {
+        alert("Couldn't add product. Check if product id already exists.")
+    } else if (res.status === 200) {
+        const data = await res.json()
+        console.log(data)
+        init_products()
+        closeOperationWindow()
     }
-    const data = res.json()
-    console.log(data)
-    init_products()
-    closeOperationWindow()
 }
 
 async function edit_product(){
